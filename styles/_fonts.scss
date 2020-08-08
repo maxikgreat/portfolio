@@ -1,0 +1,6 @@
+@import './_mixins/font-face';
+
+@include font-face('RobotoCondensed', 'Regular', normal, normal);
+@include font-face('RobotoCondensed', 'Bold', bold, normal);
+@include font-face('RobotoCondensed', 'Light', lighter, normal);
+@include font-face('RobotoCondensed', 'Italic', normal, italic);
