@@ -2,14 +2,19 @@ import { Header } from '../shared/Header';
 import { ReactNode } from 'react';
 
 interface BaseLayoutProps {
-  children: ReactNode
+  children: ReactNode,
+  className: string,
 }
 
-export const BaseLayout = ({ children }: BaseLayoutProps) => {
+export const BaseLayout = ({ children, className }: BaseLayoutProps) => {
   return (
-    <>
+    <div className="layout-container">
       <Header />
-      {children}
-    </>
+      <main className={`cover ${className}`}>
+        <div className="wrapper">
+          {children}
+        </div>
+      </main>
+    </div>
   )
 }

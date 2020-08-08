@@ -1,1 +1,13 @@
 @import './fonts';
+
+html, body {
+  font-family: 'RobotoCondensed' !important;
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'RobotoCondensed' !important;
+  font-weight: bold;
+  font-style: normal;
+}
