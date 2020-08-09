@@ -1,0 +1,54 @@
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  header {
+    height: 150px;
+  }
+  .hero-section {
+    width: 300px;
+    justify-content: flex-start;
+    &-content {
+      h2 {
+        font-size: 23px;
+      }
+      &-intro {
+        font-size: 15px;
+      }
+    }
+  }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  header {
+    height: 200px;
+  }
+  .ui.text.menu.nav {
+    padding: 10px 5px 0px 5px;
+  }
+
+  .nav-brand {
+    font-size: 20px;
+  }
+  
+  .hero-welcome {
+    div {
+      margin-bottom: 30px;
+    }
+
+    &-text h1{
+      font-size: 25px;
+    }
+  }
+}

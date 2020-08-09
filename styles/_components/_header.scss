@@ -1,0 +1,29 @@
+header {
+  height: $header-height;
+}
+
+.ui.text.menu.nav {
+  margin: 0;
+  padding: 10px 20px 0 20px;
+  background-color: transparent;
+  * {
+    transition: all .3s ease;
+    color: $white;
+    &:hover {
+      color: $primary-dark;
+    }
+  }
+  
+  a {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  a.active {
+    font-weight: bold;
+    color: $primary-dark;
+  }
+}
+
+.nav-brand {
+  font-size: 20px;
+}

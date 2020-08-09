@@ -1,38 +1,34 @@
-import Link from 'next/link';
-import { Menu } from 'semantic-ui-react';
-import { Routes } from '../../types';
-import { useRouter } from 'next/router';
+import { Menu, Icon } from 'semantic-ui-react';
+import { MobileView, BrowserView } from "react-device-detect";
 
-export const Header = () => {
-  const router = useRouter();
-
-  const renderRoutes = () => {
-    return Object.values(Routes).map(route => (
-      <Link 
-        key={route.toString()}
-        href={route}
-      >
-        <Menu.Item
-          name={route === '/' ? 'Home' : route}
-          active={router.pathname === route}
-        />
-      </Link>
-    ))
-  };
-
-  return (
-    <header>
-      <Menu pointing secondary>
-        {renderRoutes()}
-        <Menu.Menu position='right'>
-          {/* <Link href="/" onClick={this.handleItemClick}> */}
-            <Menu.Item
-              name='logout'
-              // active={activeRoute === 'blog'}
-            />
-          {/* </Link> */}
-        </Menu.Menu>
-      </Menu>
-    </header>
-  )
+interface HeaderProps {
+  setVisible: (isVisible: boolean) => void,
+  routes: JSX.Element[]
 }
+
+export const Header = ({ setVisible, routes }: HeaderProps) => (
+  <header>
+    <Menu
+      text
+      size="huge"
+      className="nav"
+    >
+      <Menu.Item
+        name="Maksym Vasylenko"
+        className="nav-brand"
+      />
+        <BrowserView renderWithFragment>
+          {routes}
+        </BrowserView>
+        <MobileView renderWithFragment>
+          <Menu.Item
+            as="div"
+            position="right"
+            onClick={() => setVisible(true)}
+          >
+            <Icon name="bars" size="large" />
+          </Menu.Item>
+        </MobileView>
+    </Menu>
+  </header>
+)

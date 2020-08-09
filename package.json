@@ -12,6 +12,7 @@
     "express": "^4.17.1",
     "next": "9.5.1",
     "react": "16.13.1",
+    "react-device-detect": "^1.13.1",
     "react-dom": "16.13.1",
     "react-typed": "^1.2.0",
     "sass": "^1.26.10",
