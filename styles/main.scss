@@ -1,6 +1,11 @@
 @import './fonts';
+@import './vars';
+// pages
+@import './_pages/index.scss';
 
 html, body {
+  height: 100%;
+  width: 100%;
   font-family: 'RobotoCondensed' !important;
   font-weight: normal;
   font-style: normal;
@@ -10,4 +15,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'RobotoCondensed' !important;
   font-weight: bold;
   font-style: normal;
+}
+
+.cover {
+  background-image: linear-gradient(45deg, $primary-light 0%, $primary 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.wrapper {
+  min-height: 100vh;
+  min-width: 100vw;
+  margin-top: 0;
+  position: relative;
 }
