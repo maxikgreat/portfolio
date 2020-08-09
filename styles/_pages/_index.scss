@@ -58,7 +58,15 @@
 
 .hero-welcome-wrapper {
   justify-content: flex-end;
-
+  .self-typed-wrapper {
+    margin-top: 20px;
+    .self-typed {
+      font-size: 2.5rem;
+      color: $white;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  }
 }
 
 @media (max-width: 991px) {

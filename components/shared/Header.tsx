@@ -1,26 +1,38 @@
 import Link from 'next/link';
-import { Container } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
+import { Routes } from '../../types';
+import { useRouter } from 'next/router';
 
 export const Header = () => {
+  const router = useRouter();
+
+  const renderRoutes = () => {
+    return Object.values(Routes).map(route => (
+      <Link 
+        key={route.toString()}
+        href={route}
+      >
+        <Menu.Item
+          name={route === '/' ? 'Home' : route}
+          active={router.pathname === route}
+        />
+      </Link>
+    ))
+  };
+
   return (
     <header>
-      <Container>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-        <Link href="/portfolio">
-          <a>Portfolio</a>
-        </Link>
-        <Link href="/cv">
-          <a>CV</a>
-        </Link>
-        <Link href="/blog">
-          <a>Blog</a>
-        </Link>
-      </Container>
+      <Menu pointing secondary>
+        {renderRoutes()}
+        <Menu.Menu position='right'>
+          {/* <Link href="/" onClick={this.handleItemClick}> */}
+            <Menu.Item
+              name='logout'
+              // active={activeRoute === 'blog'}
+            />
+          {/* </Link> */}
+        </Menu.Menu>
+      </Menu>
     </header>
   )
 }
