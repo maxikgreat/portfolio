@@ -1,12 +1,14 @@
 import { AppProps } from 'next/app';
 import { useEffect } from 'react';
-import {backgroundMove} from '../helpers/backgroundMove';
+import { isMobile } from 'react-device-detect';
+
+import { backgroundMove } from '@/helpers/backgroundMove';
 import 'semantic-ui-css/semantic.min.css';
-import '../styles/main.scss';
+import '@/styles/main.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    backgroundMove();
+    if (!isMobile) backgroundMove();
   }, []);
 
   return (

@@ -1,7 +1,7 @@
-import { BaseLayout } from '../components/layouts/BaseLayout';
 import { Grid } from 'semantic-ui-react';
-import { BasePage } from '../components/shared/BasePage';
 import Typed from 'react-typed';
+
+import { BaseLayout } from '@/components/layouts/BaseLayout';
 
 const ROLES = ['Developer', 'Tech lover', 'Team player'];
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
               <div className="hero-welcome">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the Maksym Vasylenko's portfolio website.
+                    Welcome to my portfolio website.
                     Get informed, collaborate and discover projects I was working on through the years!
                   </h1>
                 </div>
@@ -38,8 +38,8 @@ export default function Home() {
                     loop
                     showCursor
                     strings={ROLES}
-                    typeSpeed={100}
-                    backSpeed={100}
+                    typeSpeed={70}
+                    backSpeed={70}
                     backDelay={1000}
                     loopCount={0}
                     className="self-typed"

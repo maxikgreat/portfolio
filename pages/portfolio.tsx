@@ -1,5 +1,5 @@
-import { BaseLayout } from '../components/layouts/BaseLayout';
-import { BasePage } from '../components/shared/BasePage';
+import { BaseLayout } from '@/components/layouts/BaseLayout';
+import { BasePage } from '@/components/shared/BasePage';
 
 export default function Portfolio() {
   return (
