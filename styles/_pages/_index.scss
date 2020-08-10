@@ -4,7 +4,6 @@
   align-items: center;
   width: 100%;
   height: calc(100vh - 50px);
-  background-image: url('/assets/images/background-index.png');
 }
 
 .hero-section {
@@ -15,6 +14,7 @@
   margin: auto;
 
   h2 {
+    font-size: 30px;
     color: $white;
     font-weight: bold;
     margin-bottom: 10px;
@@ -28,7 +28,7 @@
     z-index: 1;
 
     &-intro {
-      font-size: 17px;
+      font-size: 20px;
     }
   }
 }
@@ -36,6 +36,8 @@
 .image {
   width: auto;
   max-width: 100%;
+  border: 5px double $accent;
+  box-shadow: 0px 0px 30px 10px rgba($primary, 0.3);
 }
 
 .hero-welcome {
@@ -67,23 +69,3 @@
     }
   }
 }
-
-.shadow-custom {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  box-shadow: -17px 13px 41px rgba(13,78,158,0.6);
-  border: 2px solid $primary;
-
-  .shadow-inner {
-    width: 100%;
-    height: 100%;
-    box-shadow: -17px 13px 13px rgba(0,0,0,0.09);
-  }
-}
-
-// .shadow-custom-2 {
-//   border: 2px solid #f37d49;
-//   box-shadow: -17px 13px 41px rgba(13,78,158,0.3);
-// }

@@ -1,11 +1,10 @@
 import { BaseLayout } from '../components/layouts/BaseLayout';
+import { Grid } from 'semantic-ui-react';
 import { BasePage } from '../components/shared/BasePage';
-import { Container, Grid } from 'semantic-ui-react';
 import Typed from 'react-typed';
 
 const ROLES = ['Developer', 'Tech lover', 'Team player'];
 export default function Home() {
-  // todo fix mobile
   return (
     <BaseLayout>
       <section className="home-section">
@@ -14,9 +13,10 @@ export default function Home() {
             <Grid.Column>
               <div className="hero-section">
                 <div className="hero-section-content">
-                  <h2> Full Stack Web Developer </h2>
+                  <h2> Full Stack Web Developer</h2>
+                  <hr />
                   <div className="hero-section-content-intro">
-                    Have a look at my portfolio and job history.
+                    Have a look at my portfolio and job history
                   </div>
                 </div>
                 <img className="image" src="assets/images/section-1.jpg"/>
@@ -29,7 +29,7 @@ export default function Home() {
               <div className="hero-welcome">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Filip Jerga.
+                    Welcome to the Maksym Vasylenko's portfolio website.
                     Get informed, collaborate and discover projects I was working on through the years!
                   </h1>
                 </div>
