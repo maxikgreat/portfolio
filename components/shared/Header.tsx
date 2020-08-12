@@ -1,15 +1,18 @@
 import { Menu, Icon } from 'semantic-ui-react';
 import { MobileView, BrowserView } from "react-device-detect";
+import Link from 'next/link';
 
 interface HeaderProps {
   setVisible: (isVisible: boolean) => void,
-  routes: JSX.Element[]
+  routes: JSX.Element[],
+  loginRoute: JSX.Element
 }
 
-export const Header = ({ setVisible, routes }: HeaderProps) => (
+export const Header = ({ setVisible, routes, loginRoute }: HeaderProps) => (
   <header>
     <Menu
       text
+      as="nav"
       size="huge"
       className="nav"
     >
@@ -19,6 +22,7 @@ export const Header = ({ setVisible, routes }: HeaderProps) => (
       />
         <BrowserView renderWithFragment>
           {routes}
+          {loginRoute}
         </BrowserView>
         <MobileView renderWithFragment>
           <Menu.Item

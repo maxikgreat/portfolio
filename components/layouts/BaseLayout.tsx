@@ -16,6 +16,24 @@ export const BaseLayout = ({ children, className = '' }: BaseLayoutProps) => {
   const router = useRouter();
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
+  const loginRoute = (isMobile: boolean): JSX.Element => isMobile ? (
+    <Link href={'/login'}>
+      <Menu.Item
+        name={'Login'}
+        // active={router.pathname === route}
+      />
+    </Link>
+  ) : (
+    <Menu.Menu position="right">
+      <Link href={'/login'}>
+        <Menu.Item
+          name={'Login'}
+          // active={router.pathname === route}
+        />
+      </Link>
+    </Menu.Menu>
+  )
+
   const renderRoutes = (): JSX.Element[] => {
     return Object.values(Routes).map(route => (
       <Link 
@@ -36,11 +54,13 @@ export const BaseLayout = ({ children, className = '' }: BaseLayoutProps) => {
           visible={mobileMenu}
           setVisible={setMobileMenu}
           routes={renderRoutes()}
+          loginRoute={loginRoute(true)}
         />
       </MobileView>
       <Header
         setVisible={setMobileMenu}
         routes={renderRoutes()}
+        loginRoute={loginRoute(false)}
       />
       <main className={`${className}`}>
         {children}
