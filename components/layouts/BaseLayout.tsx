@@ -25,10 +25,10 @@ export const BaseLayout = ({ children, className = '' }: BaseLayoutProps) => {
     </Link>
   ) : (
     <Menu.Menu position="right">
-      <Link href={'/login'}>
+      <Link href="api/v1/login">
         <Menu.Item
           name={'Login'}
-          // active={router.pathname === route}
+          active={router.pathname === 'api/v1/login'}
         />
       </Link>
     </Menu.Menu>

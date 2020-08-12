@@ -8,6 +8,7 @@
     "start": "cross-env NODE_ENV=production ts-node --project tsconfig.server.json server/index.ts"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^0.15.0",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "next": "9.5.1",
