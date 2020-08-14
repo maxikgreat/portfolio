@@ -7,6 +7,7 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
   
+  
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -21,7 +22,7 @@
   }
 
   .hero-section {
-    width: 95%;
+    width: 70%;
     justify-content: flex-start;
     &-content {
       h2 {
@@ -32,7 +33,6 @@
       }
     }
   }
-
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -56,5 +56,9 @@
     &-text h1{
       font-size: 25px;
     }
+  }
+
+  .hero-section {
+    width: 90%;
   }
 }

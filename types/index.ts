@@ -5,6 +5,7 @@ export enum Routes {
   CV = '/cv',
   Blog = '/blog',
   Secret = '/secret',
+  SecretSSR = '/secretssr',
 }
 
 export interface User {
