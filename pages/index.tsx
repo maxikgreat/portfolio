@@ -2,12 +2,14 @@ import { Grid } from 'semantic-ui-react';
 import Typed from 'react-typed';
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
+import { useGetUser } from '@/actions/user';
 
 const ROLES = ['Developer', 'Tech lover', 'Team player'];
 
 export default function Home() {
+  const { data, loading } = useGetUser();
   return (
-    <BaseLayout>
+    <BaseLayout data={data} loading={loading}>
       <section className="home-section">
         <Grid columns={2} stackable>
           <Grid.Row>

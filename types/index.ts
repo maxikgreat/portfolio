@@ -3,7 +3,8 @@ export enum Routes {
   About = '/about',
   Portfolio = '/portfolio',
   CV = '/cv',
-  Blog = '/blog'
+  Blog = '/blog',
+  Secret = '/secret',
 }
 
 export interface User {

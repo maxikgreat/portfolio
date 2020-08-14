@@ -6,23 +6,20 @@ import { MobileView, isMobile } from "react-device-detect";
 import { Menu } from 'semantic-ui-react';
 import { Header } from '../shared/Header';
 import { MobileSideBar } from '../shared/MobileSideBar';
-import { Routes } from '@/types';
-import { useGetUser } from '@/actions/user';
-
+import { Routes, User } from '@/types';
 
 interface BaseLayoutProps {
   children: ReactNode,
   className?: string,
+  loading: boolean,
+  data: User
 }
 
-export const BaseLayout = ({ children, className = '' }: BaseLayoutProps) => {
+export const BaseLayout = ({ children, className = '', loading, data }: BaseLayoutProps) => {
   const router = useRouter();
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
-  const { data, error, loading } = useGetUser();
-
   const checkUser = (isMobile: boolean, auth = true): JSX.Element => {
-
     let userLink: JSX.Element = (
       <a href={`/api/v1/${auth ? 'logout' : 'login'}`}>
         <Menu.Item name={auth ? 'LOGOUT' : 'LOGIN'} />
@@ -81,7 +78,6 @@ export const BaseLayout = ({ children, className = '' }: BaseLayoutProps) => {
       <main className={`${className}`}>
         {children}
       </main>
-      
     </>
   )
 }
