@@ -4,6 +4,7 @@ import Typed from 'react-typed';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 
 const ROLES = ['Developer', 'Tech lover', 'Team player'];
+
 export default function Home() {
   return (
     <BaseLayout>

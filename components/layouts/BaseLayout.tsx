@@ -1,11 +1,14 @@
-import { Header } from '../shared/Header';
 import { ReactNode, useState } from 'react';
-import { MobileSideBar } from '../shared/MobileSideBar';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
-import { Routes } from '../../types';
+import { MobileView, isMobile } from "react-device-detect";
+
 import { Menu } from 'semantic-ui-react';
-import { MobileView } from "react-device-detect";
+import { Header } from '../shared/Header';
+import { MobileSideBar } from '../shared/MobileSideBar';
+import { Routes } from '@/types';
+import { useGetUser } from '@/actions/user';
+
 
 interface BaseLayoutProps {
   children: ReactNode,
@@ -16,23 +19,32 @@ export const BaseLayout = ({ children, className = '' }: BaseLayoutProps) => {
   const router = useRouter();
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
-  const loginRoute = (isMobile: boolean): JSX.Element => isMobile ? (
-    <Link href={'/login'}>
-      <Menu.Item
-        name={'Login'}
-        // active={router.pathname === route}
-      />
-    </Link>
-  ) : (
-    <Menu.Menu position="right">
-      <Link href="api/v1/login">
-        <Menu.Item
-          name={'Login'}
-          active={router.pathname === 'api/v1/login'}
-        />
-      </Link>
-    </Menu.Menu>
-  )
+  const { data, error, loading } = useGetUser();
+
+  const checkUser = (isMobile: boolean, auth = true): JSX.Element => {
+
+    let userLink: JSX.Element = (
+      <a href={`/api/v1/${auth ? 'logout' : 'login'}`}>
+        <Menu.Item name={auth ? 'LOGOUT' : 'LOGIN'} />
+      </a>
+    );
+    
+    if (!isMobile) {
+      userLink = (
+        <Menu.Menu position="right">
+          {userLink}
+        </Menu.Menu>
+      );
+    }
+
+    return userLink;
+  }
+
+  const userRoute = (isMobile: boolean): JSX.Element => !loading 
+    ? data 
+      ? checkUser(isMobile)
+      : checkUser(isMobile, false)
+    : null 
 
   const renderRoutes = (): JSX.Element[] => {
     return Object.values(Routes).map(route => (
@@ -51,16 +63,20 @@ export const BaseLayout = ({ children, className = '' }: BaseLayoutProps) => {
     <>
       <MobileView renderWithFragment>
         <MobileSideBar
+          user={data}
+          loading={loading}
           visible={mobileMenu}
           setVisible={setMobileMenu}
           routes={renderRoutes()}
-          loginRoute={loginRoute(true)}
+          userRoute={userRoute(true)}
         />
       </MobileView>
       <Header
+        user={data}
+        loading={loading}
         setVisible={setMobileMenu}
         routes={renderRoutes()}
-        loginRoute={loginRoute(false)}
+        userRoute={userRoute(false)}
       />
       <main className={`${className}`}>
         {children}

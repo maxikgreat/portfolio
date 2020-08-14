@@ -1,13 +1,16 @@
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
+import { User } from '@/types';
 
 interface MobileSideBar {
   visible: boolean,
   setVisible: (isVisible: boolean) => void,
   routes: JSX.Element[],
-  loginRoute: JSX.Element,
+  userRoute: JSX.Element,
+  user: User,
+  loading: boolean
 }
 
-export const MobileSideBar = ({ visible, setVisible, routes, loginRoute }: MobileSideBar) => {
+export const MobileSideBar = ({ visible, setVisible, routes, userRoute, user, loading }: MobileSideBar) => {
   return (
     <Sidebar
       as={Menu}
@@ -21,7 +24,7 @@ export const MobileSideBar = ({ visible, setVisible, routes, loginRoute }: Mobil
     >
       {routes}
       <hr />
-      {loginRoute}
+      {userRoute}
     </Sidebar>
   )
 }

@@ -19,7 +19,8 @@
     "react-typed": "^1.2.0",
     "sass": "^1.26.10",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^1.1.1"
+    "semantic-ui-react": "^1.1.1",
+    "swr": "^0.3.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.7",
