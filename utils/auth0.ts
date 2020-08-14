@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse, NextPageContext } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { initAuth0 } from '@auth0/nextjs-auth0';
 
 interface NextReqRes {
@@ -22,15 +22,16 @@ export function withAuth<T>(callback?: ({ req, res }: NextReqRes, ...rest: any[]
   return async ({req, res}: NextReqRes) => {
     const session = await auth0.getSession(req);
 
+    console.log('Session 1', session);
+    console.log('Callback', callback);
+
     if (!session || !session.user) {
-      res.writeHead(302, {
-        Location: '/api/v1/login'
-      });
-      
+      res.writeHead(302,  { Location: '/api/v1/login' });
       res.end();
+
+      // need to be fixed
       return { props: {} };
     }
-  
     const callbackData = callback ? await callback({ req, res }) : null;
   
     return { props: {user: session.user, ...callbackData} };
