@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { initAuth0 } from '@auth0/nextjs-auth0';
+import { User, Role } from '@/types';
+import { Redirect } from '@/components/shared/Redirect';
 
 interface NextReqRes {
   req: NextApiRequest,
@@ -18,12 +20,11 @@ const auth0 = initAuth0({
   },
 });
 
+export const rolePassed = (user: User, role: Role) => user["https://portfolio-max.com/roles"].includes(role); 
+
 export function withAuth<T>(callback?: ({ req, res }: NextReqRes, ...rest: any[]) => Promise<T>) {
   return async ({req, res}: NextReqRes) => {
     const session = await auth0.getSession(req);
-
-    console.log('Session 1', session);
-    console.log('Callback', callback);
 
     if (!session || !session.user) {
       res.writeHead(302,  { Location: '/api/v1/login' });

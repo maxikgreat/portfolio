@@ -1,7 +1,9 @@
 import { useGetUser } from '@/actions/user';
 import { Redirect } from '@/components/shared/Redirect';
+import { Role } from '@/types';
+import { rolePassed } from '@/utils/auth0';
 
-export function withAuth<T>(Component: React.ComponentType<T>) {
+export function withAuth<T>(Component: React.ComponentType<T>, role = Role.guest) {
   return (props: T) => {
     const { data, loading } = useGetUser();
 
@@ -11,6 +13,8 @@ export function withAuth<T>(Component: React.ComponentType<T>) {
 
     return !data 
       ? <Redirect ssr to="/api/v1/login" />
-      : <Component user={data} loading={loading} {...props} />
+      : !rolePassed(data, role) 
+        ? <Redirect ssr to="/api/v1/login" />
+        : <Component user={data} loading={loading} {...props} />
   }
 }

@@ -1,3 +1,5 @@
+const NAMESPACE = process.env.AUTH0_NAMESPACE;
+
 export enum Routes {
   Home = '/',
   About = '/about',
@@ -5,7 +7,13 @@ export enum Routes {
   CV = '/cv',
   Blog = '/blog',
   Secret = '/secret',
-  SecretSSR = '/secretssr',
+  // SecretSSR = '/secretssr', not working for 9.5
+  Admin = '/admin',
+}
+
+export enum Role {
+  admin = 'admin',
+  guest = 'guest',
 }
 
 export interface User {
@@ -19,4 +27,5 @@ export interface User {
   email: string,
   email_verified: boolean
   sub: string,
+  ['https://portfolio-max.com/roles']: Role[], // roles of auth0
 }
