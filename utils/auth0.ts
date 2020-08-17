@@ -21,7 +21,10 @@ const auth0 = initAuth0({
 
 export const rolePassed = (user: User, role: Role) => user["https://portfolio-max.com/roles"].includes(role); 
 
-export function withAuth<T>(callback?: ({ req, res }: NextReqRes, ...rest: any[]) => Promise<T>) {
+export function withAuth<T>(
+  callback?: ({ req, res }: NextReqRes, ...rest: any[]) => Promise<T>,
+  role = Role.guest,
+) {
   return async ({req, res}: NextReqRes) => {
     // try {
     //   const session = await auth0.getSession(req);
@@ -39,10 +42,13 @@ export function withAuth<T>(callback?: ({ req, res }: NextReqRes, ...rest: any[]
 
       // need to be fixed
       return { props: {} };
-
     }
+
+    if (!rolePassed(session.user as User, role)) {
+      return { props: {} };
+    }
+
     const callbackData = callback ? await callback({ req, res }) : null;
-  
     return { props: {user: session.user, ...callbackData} };
   }
 } 

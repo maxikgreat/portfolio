@@ -5,8 +5,6 @@ import { useGetUser } from '@/actions/user';
 export default function About() {
   const { data, loading } = useGetUser();
 
-  console.log(data);
-
   return (
     <BaseLayout data={data} loading={loading}>
       <BasePage>
