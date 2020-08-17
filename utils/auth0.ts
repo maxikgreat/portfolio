@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { initAuth0 } from '@auth0/nextjs-auth0';
 import { User, Role } from '@/types';
-import { Redirect } from '@/components/shared/Redirect';
 
 interface NextReqRes {
   req: NextApiRequest,
@@ -24,14 +23,23 @@ export const rolePassed = (user: User, role: Role) => user["https://portfolio-ma
 
 export function withAuth<T>(callback?: ({ req, res }: NextReqRes, ...rest: any[]) => Promise<T>) {
   return async ({req, res}: NextReqRes) => {
+    // try {
+    //   const session = await auth0.getSession(req);
+    //   return { props: { user: session.user } };
+    // } catch (err) {
+    //   res.writeHead(302, { Location: '/api/v1/login' });
+    //   res.end();
+    //   return { props: {} };
+    // }
     const session = await auth0.getSession(req);
 
     if (!session || !session.user) {
-      res.writeHead(302,  { Location: '/api/v1/login' });
-      res.end();
+      // res.writeHead(302,  { Location: '/api/v1/login' });
+      // res.end();
 
       // need to be fixed
       return { props: {} };
+
     }
     const callbackData = callback ? await callback({ req, res }) : null;
   

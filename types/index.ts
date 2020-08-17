@@ -6,9 +6,9 @@ export enum Routes {
   Portfolio = '/portfolio',
   CV = '/cv',
   Blog = '/blog',
-  Secret = '/secret',
-  // SecretSSR = '/secretssr', not working for 9.5
-  Admin = '/admin',
+  // Secret = '/secret',
+  SecretSSR = '/secretssr',
+  // Admin = '/admin',
 }
 
 export enum Role {

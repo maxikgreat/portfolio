@@ -12,7 +12,7 @@
     "axios": "^0.19.2",
     "dotenv-webpack": "^2.0.0",
     "express": "^4.17.1",
-    "next": "^9.5.3-canary.2",
+    "next": "^9.5.2",
     "react": "16.13.1",
     "react-device-detect": "^1.13.1",
     "react-dom": "16.13.1",
