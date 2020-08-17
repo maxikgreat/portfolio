@@ -8,9 +8,8 @@ const schema = new Schema({
   jobPosition: { type: String, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date },
+  description: { type: Date, required: true },
   createdAt: { type: Date, default: Date.now() },
-
-  description: String,
 });
 
 export default model('Work', schema);

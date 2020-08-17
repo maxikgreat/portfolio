@@ -6,7 +6,8 @@
     "client:dev": "nodemon --watch 'server/**/*.ts' --exec 'ts-node --project tsconfig.server.json' server/index.ts",
     "client:start": "cross-env NODE_ENV=production ts-node --project tsconfig.server.json server/index.ts",
     "client:build": "next build",
-    "server:dev": "nodemon --watch 'serverApi/**/*.ts' --exec 'ts-node --project tsconfig.server.json' serverApi/index.ts"
+    "server:dev": "nodemon --watch 'serverApi/**/*.ts' --exec 'ts-node --project tsconfig.server.json' serverApi/index.ts",
+    "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\""
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.15.0",
