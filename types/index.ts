@@ -7,7 +7,7 @@ export enum Routes {
   CV = '/cv',
   Blog = '/blog',
   // Secret = '/secret',
-  SecretSSR = '/secretssr',
+  // SecretSSR = '/secretssr',
   // Admin = '/admin',
 }
 
