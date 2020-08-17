@@ -3,7 +3,7 @@ const NAMESPACE = process.env.AUTH0_NAMESPACE;
 export enum Routes {
   Home = '/',
   About = '/about',
-  Portfolio = '/portfolio',
+  Work = '/work',
   CV = '/cv',
   Blog = '/blog',
   // Secret = '/secret',
