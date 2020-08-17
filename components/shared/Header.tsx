@@ -1,7 +1,7 @@
 import { Menu, Icon } from 'semantic-ui-react';
 import { MobileView, BrowserView } from "react-device-detect";
 
-import { User } from '@/types';
+import { User } from '@/types/auth0';
 
 interface HeaderProps {
   setVisible: (isVisible: boolean) => void,

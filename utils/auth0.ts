@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { initAuth0 } from '@auth0/nextjs-auth0';
-import { User, Role } from '@/types';
+import { User, Role } from '@/types/auth0';
 
 interface NextReqRes {
   req: NextApiRequest,

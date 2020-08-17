@@ -1,7 +1,7 @@
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { Redirect } from '@/components/shared/Redirect';
-import { User, Role } from '@/types';
+import { User, Role } from '@/types/auth0';
 import { withAuth } from '@/utils/auth0';
 
 interface SecretSsrProps {

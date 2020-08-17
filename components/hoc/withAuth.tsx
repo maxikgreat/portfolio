@@ -1,6 +1,6 @@
 import { useGetUser } from '@/actions/user';
 import { Redirect } from '@/components/shared/Redirect';
-import { Role } from '@/types';
+import { Role } from '@/types/auth0';
 import { rolePassed } from '@/utils/auth0';
 
 export function withAuth<T>(Component: React.ComponentType<T>, role = Role.guest) {

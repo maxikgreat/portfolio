@@ -1,5 +1,6 @@
-import { Sidebar, Menu, Icon } from 'semantic-ui-react';
-import { User } from '@/types';
+import { Sidebar, Menu } from 'semantic-ui-react';
+
+import { User } from '@/types/auth0';
 
 interface MobileSideBar {
   visible: boolean,

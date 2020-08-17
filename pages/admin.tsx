@@ -1,7 +1,7 @@
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { withAuth } from '@/components/hoc/withAuth';
-import { User, Role } from '@/types';
+import { User, Role } from '@/types/auth0';
 
 interface SecretProps {
   user: User,

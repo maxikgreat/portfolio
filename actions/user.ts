@@ -1,6 +1,7 @@
-import { User } from '@/types/index';
 import useSWR from 'swr';
 import axios from 'axios';
+
+import { User } from '@/types/auth0';
 
 const fetcher = (url: string) => axios(url).then(({ data }) => data);
 

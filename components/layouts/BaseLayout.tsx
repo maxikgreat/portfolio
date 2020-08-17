@@ -1,12 +1,13 @@
 import { ReactNode, useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
-import { MobileView, isMobile } from "react-device-detect";
+import { MobileView } from "react-device-detect";
 
 import { Menu } from 'semantic-ui-react';
 import { Header } from '../shared/Header';
 import { MobileSideBar } from '../shared/MobileSideBar';
-import { Routes, User } from '@/types';
+import { Routes } from '@/types/app';
+import { User } from '@/types/auth0';
 
 interface BaseLayoutProps {
   children: ReactNode,
