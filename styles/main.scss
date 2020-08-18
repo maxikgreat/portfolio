@@ -4,9 +4,11 @@
 //components
 @import './_components/header';
 @import './_components/sidebar';
+@import './_components/work-timeline';
 
 // pages
 @import './_pages/index.scss';
+@import './_pages/work';
 
 html, body {
   min-height: 100%;
@@ -18,8 +20,8 @@ html, body {
 }
 
 .background-image {
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   left: 0;
   top: 0;
   position: absolute;
@@ -35,9 +37,8 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
 }
 
-.wrapper {
-  min-height: calc(100vh - 50px);
-  min-width: 100vw;
+.base-page {
+  margin: 3rem 0 3rem 0;
 }
 
 @import './respo';

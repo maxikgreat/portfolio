@@ -8,7 +8,7 @@ import '@/styles/main.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    if (!isMobile) backgroundMove();
+    // if (!isMobile) backgroundMove();
   }, []);
 
   return (
