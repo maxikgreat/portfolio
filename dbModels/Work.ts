@@ -8,7 +8,7 @@ const schema = new Schema({
   jobPosition: { type: String, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date },
-  description: { type: Date, required: true },
+  description: { type: String, required: true },
   createdAt: { type: Date, default: Date.now() },
 });
 
