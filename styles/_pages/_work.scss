@@ -1,4 +1,4 @@
-.ui.container.timeline {
+.timeline {
   position: relative;
   &::before {
     content: '';
@@ -7,7 +7,8 @@
     left: 23px;
     height: 100%;
     width: 8px;
-    background: linear-gradient(180deg, $primary 0%, $accent 100%);;
+    background: linear-gradient(180deg, $primary 0%, $accent 100%);
+    border-radius: 10px;
   }
 }
 
