@@ -41,4 +41,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 3rem 0 3rem 0;
 }
 
+.special-text {
+  color: $primary-light;
+  text-shadow: 4px 4px $accent-dark;
+}
+
 @import './respo';

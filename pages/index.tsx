@@ -16,7 +16,7 @@ export default function Home() {
             <Grid.Column>
               <div className="hero-section">
                 <div className="hero-section-content">
-                  <h2> Full Stack Web Developer</h2>
+                  <h2 className="special-text">Full Stack Web Developer</h2>
                   <hr />
                   <div className="hero-section-content-intro">
                     Have a look at my portfolio and job history
@@ -45,7 +45,7 @@ export default function Home() {
                     backSpeed={70}
                     backDelay={1000}
                     loopCount={0}
-                    className="self-typed"
+                    className="self-typed special-text"
                     cursorChar="|"
                   />
                 </div>
