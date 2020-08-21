@@ -26,7 +26,7 @@ export default function Work({ works }: WorkProps) {
   const { data, loading } = useGetUser();
 
   const elements = [1,3,3];
-  const delayValue = 200;
+  const delayValue = 300;
 
   const containerWorkRef = useRef();
   const elementWorkRef = useRef();
@@ -48,7 +48,7 @@ export default function Work({ works }: WorkProps) {
       ref: elementWorkRef,
       config: config.slow,
       elem,
-      delay: 300 * index,
+      delay: delayValue * index,
       transform: 'translateY(0)',
       opacity: 1,
       from: {

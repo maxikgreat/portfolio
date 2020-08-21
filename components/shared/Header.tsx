@@ -21,7 +21,7 @@ export const Header = ({ setVisible, routes, userRoute, user, loading }: HeaderP
     >
       <Menu.Item
         name="Maksym Vasylenko"
-        className="nav-brand"
+        className="nav-brand special-text-small"
       />
         <BrowserView renderWithFragment>
           {routes}

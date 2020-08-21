@@ -14,11 +14,16 @@ header {
       color: $primary-light;
     }
   }
+
+  .nav-brand {
+    font-size: 25px;
+  }
   
   a {
-    font-size: 20px;
+    font-size: 25px;
     text-transform: uppercase;
   }
+
   a.active {
     font-weight: bold;
     color: $primary;

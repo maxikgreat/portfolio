@@ -44,6 +44,9 @@ h1, h2, h3, h4, h5, h6 {
 .special-text {
   color: $primary-light;
   text-shadow: 4px 4px $accent-dark;
+  &-small {
+    text-shadow: 2px 2px $accent-dark;
+  }
 }
 
 @import './respo';

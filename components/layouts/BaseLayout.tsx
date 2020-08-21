@@ -23,7 +23,10 @@ export const BaseLayout = ({ children, className = '', loading, data }: BaseLayo
   const checkUser = (isMobile: boolean, auth = true): JSX.Element => {
     let userLink: JSX.Element = (
       <a href={`/api/v1/${auth ? 'logout' : 'login'}`}>
-        <Menu.Item name={auth ? 'LOGOUT' : 'LOGIN'} />
+        <Menu.Item 
+          name={auth ? 'LOGOUT' : 'LOGIN'}
+          className="special-text-small"
+        />
       </a>
     );
     
@@ -51,6 +54,7 @@ export const BaseLayout = ({ children, className = '', loading, data }: BaseLayo
         href={route}
       >
         <Menu.Item
+          className="special-text-small"
           name={route === '/' ? 'Home' : route}
           active={router.pathname === route}
         />
