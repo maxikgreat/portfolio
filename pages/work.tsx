@@ -59,7 +59,7 @@ export default function Work({ works }: WorkProps) {
   );
 
 
-  useChain([{current: containerWorkRef.current}, elementWorkRef], [0, 0.7]);
+  useChain([{current: containerWorkRef.current}, elementWorkRef], [0, 1]);
 
   return (
     <BaseLayout data={data} loading={loading}>

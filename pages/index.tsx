@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { Grid } from 'semantic-ui-react';
 import Typed from 'react-typed';
 import { useSpring, useChain, animated, config } from 'react-spring';
-import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons'
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { useGetUser } from '@/actions/user';
