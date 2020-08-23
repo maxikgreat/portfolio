@@ -10,6 +10,10 @@
 @import './_pages/index.scss';
 @import './_pages/work';
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 html, body {
   min-height: 100%;
   width: 100%;
@@ -45,8 +49,14 @@ h1, h2, h3, h4, h5, h6 {
   color: $primary-light;
   text-shadow: 4px 4px $accent-dark;
   &-small {
+    color: $primary-light;
     text-shadow: 2px 2px $accent-dark;
   }
+}
+
+.image-bordered-shadow {
+  border: 5px double $accent;
+  box-shadow: 5px 5px 10px 15px rgba($black, 0.75);
 }
 
 @import './respo';
