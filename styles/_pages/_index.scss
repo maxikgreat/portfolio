@@ -36,17 +36,43 @@
 .image-section-1 {
   width: auto;
   max-width: 100%;
+  z-index: -10px;
 }
 
 .image-section-2 {
   transition: 0.5s all ease-in-out;
   width: 90%;
-  border-left: none !important;
+  position: absolute;
+  left: 10%;
+  border-right: none !important;
+  z-index: -10px;
 }
 
 .image-section-3 {
+  position: absolute;
+  left: -10%;
   width: 30%;
   border-left: none !important;
+  transform: rotate(-16deg);
+  z-index: -10px;
+}
+
+.image-section-4 {
+  transition: 0.5s all ease-in-out;
+  width: 90%;
+  height: 95%;
+  position: absolute;
+  border-left: none !important;
+  z-index: -10px;
+}
+
+.image-section-5 {
+  transition: 0.5s all ease-in-out;
+  width: 25%;
+  position: absolute;
+  left: 5%;
+  padding: 1.5rem;
+  z-index: -10px;
 }
 
 .image-section {
@@ -87,15 +113,16 @@
   position: absolute;
   margin: 0;
   top: 0;
-  left: 40%;
+  left: 30%;
   font-size: 5rem;
   transform: rotate(-16deg);
   font-family: 'DancingScript' !important;
   text-transform: uppercase;
+  z-index: 10;
   span {
     display: inline-block;
     line-height: 3rem;
-    font-size: 2rem;
+    font-size: 3rem;
     text-transform: none;
   }
 }

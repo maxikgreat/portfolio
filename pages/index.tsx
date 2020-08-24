@@ -9,7 +9,8 @@ import { useGetUser } from '@/actions/user';
 import { ParallaxIcon } from '@/components/shared/ParallaxIcon';
 
 const roles = ['Developer', 'Tech lover', 'Team player'];
-const awesomeTextShow = 600; // scroll position when text will appear in px
+const awesomeTextShow = 700; // scroll position when text will appear in px
+const lastSectionShow = 1470;
 
 export default function Home() {
   const { data, loading } = useGetUser();
@@ -50,9 +51,7 @@ export default function Home() {
     opacity: parallaxScrollPos > awesomeTextShow ? 1 : 0,
   });
 
-  const getParallaxPosition = (): void => {
-    setParallaxScrollPos(parallaxRef.current.current);
-  };
+  const scrollParallaxHandler = (): void => setParallaxScrollPos(parallaxRef.current.current);
 
   useChain([{ current: photoRef.current }, textRef], [0, 1]);
 
@@ -63,7 +62,7 @@ export default function Home() {
           ref={parallaxRef} 
           pages={3}
           className="parallax-container"
-          onScrollCapture={getParallaxPosition}
+          onScrollCapture={scrollParallaxHandler}
         >
           <ParallaxLayer
             offset={0}
@@ -109,9 +108,10 @@ export default function Home() {
                       />
                     </div>
                     <div className="hero-welcome-bio">
-                      <h2>
-                        Let's take a look on my work.
-                      </h2>
+                      <button 
+                        className="btn-glow btn-hover-shine"
+                        onClick={() => parallaxRef.current.scrollTo(1)}
+                      >Let's take a look</button>
                     </div>
                   </animated.div>
                 </Grid.Column>
@@ -127,12 +127,12 @@ export default function Home() {
                 `image-section-2 image-bordered-shadow 
                 ${parallaxScrollPos > awesomeTextShow ? 'blur' : ''}`
               }
-              src="/assets/images/section-2.jpg" 
+              src="/assets/images/section-2.jpg"
               alt="section two"
             />
           </ParallaxLayer>
           <ParallaxLayer
-            offset={1.35}
+            offset={1.30}
             speed={0.8}
           >
             <animated.h2 
@@ -141,30 +141,50 @@ export default function Home() {
             >
               Example txt<br />
               <span>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, aliquid.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, pariatur ea fugiat inventore laborum in deleniti error iste quis delectus?
               </span>
+              <span onClick={() => parallaxRef.current.scrollTo(2)}>next</span>
             </animated.h2>
           </ParallaxLayer>
           <ParallaxLayer
-            offset={1.25}
+            offset={1.30}
             speed={1}
           >
             <img 
-              className="image-section-3 image-bordered-shadow"
+              className={
+                `image-section-3 image-bordered-shadow 
+                ${parallaxScrollPos > awesomeTextShow ? '' : 'blur'}`
+              }
               src="/assets/images/section-3.jpg" 
               alt="section three"
             />
           </ParallaxLayer>
-          {/* <ParallaxLayer
-            offset={1.5}
+          <ParallaxLayer
+            offset={2}
             speed={1.25}
           >
             <img
-              className="image-section-4"
+              className={
+                `image-section-4 image-bordered-shadow 
+                ${parallaxScrollPos > lastSectionShow ? 'blur' : ''}`
+              }
               src="/assets/images/section-4.jpg"
               alt="section four"
             />
-          </ParallaxLayer> */}
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={2.1}
+            speed={2}
+          >
+            <img
+              className={
+                `image-section-5 
+                ${parallaxScrollPos > lastSectionShow ? '' : 'blur'}`
+              }
+              src="/assets/images/section-5.png"
+              alt="section four"
+            />
+          </ParallaxLayer>
           {/* <ParallaxIcon
             offset={0.98}
             speed={0}

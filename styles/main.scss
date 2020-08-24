@@ -5,6 +5,7 @@
 @import './_components/header';
 @import './_components/sidebar';
 @import './_components/work-timeline';
+@import './_components/button-glow';
 
 // pages
 @import './_pages/index.scss';
@@ -35,7 +36,7 @@ html, body {
   z-index: -100;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, button {
   font-family: 'RobotoCondensed' !important;
   font-weight: bold;
   font-style: normal;
@@ -60,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blur {
-  filter: blur(10px);
+  filter: blur(10px) grayscale(0.4);
 }
 
 @import './respo';

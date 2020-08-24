@@ -1,0 +1,54 @@
+.btn-glow {
+  cursor: pointer;
+  color: $white!important;
+  display: inline-block;
+  background: $accent;
+  background: -moz-linear-gradient(left, rgba($accent, 1) 0%, rgba($primary, 1) 100%);
+  background: -webkit-linear-gradient(left, rgba($accent, 1) 0%,rgba($primary, 1) 100%);
+  background: linear-gradient(to right, rgba($accent, 1) 0%,rgba($primary, 1) 100%);
+  border: none;
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 30px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  box-shadow: none;
+  animation: glow 3s infinite;
+  animation-timing-function: ease-out;
+  position: relative;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 0 10px #3daaa200;
+  transition: .8s;
+  -webkit-transition: .8s;
+}
+@keyframes glow{
+    0% { box-shadow: 0 0 20px $accent-dark; text-shadow:  0 0 0px $accent-light; }
+    40% { box-shadow: 0 0 100px $accent-dark; text-shadow:  0 0 20px $accent-light;}
+    100% { box-shadow: 0 0 20px $accent-dark; text-shadow:  0 0 1px $accent-light; }
+  }
+.btn-hover-shine {
+  position: relative;
+  }
+.btn-hover-shine:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  height: 100%;
+  right: 80%;
+  width: 1px;
+  background-color: #ffffff00;
+  box-shadow: 0 0 20px #ffd2fe00, 0 0 10px #ffd2fe00, 0 0 5px #ffd2fe00, 0 0 2px #ffd2fe00;
+  opacity: 1;
+  }
+.btn-hover-shine:hover:after {
+  right: 2%;
+  background-color: #ffffffff;
+  box-shadow: 0 0 30px #ffd2feff, 0 0 15px #ffd2feff, 0 0 7px #ffd2feff, 0 0 3px #ffd2feff;
+  opacity: 0;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  }
