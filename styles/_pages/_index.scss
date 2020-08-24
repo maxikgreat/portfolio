@@ -39,6 +39,7 @@
 }
 
 .image-section-2 {
+  transition: 0.5s all ease-in-out;
   width: 90%;
   border-left: none !important;
 }
@@ -46,6 +47,10 @@
 .image-section-3 {
   width: 30%;
   border-left: none !important;
+}
+
+.image-section {
+  width: 100%;
 }
 
 .hero-welcome {
@@ -81,18 +86,20 @@
 .title-with-awesome {
   position: absolute;
   margin: 0;
-  top: 35%;
-  left: 55%;
+  top: 0;
+  left: 40%;
   font-size: 5rem;
   transform: rotate(-16deg);
   font-family: 'DancingScript' !important;
   text-transform: uppercase;
+  span {
+    display: inline-block;
+    line-height: 3rem;
+    font-size: 2rem;
+    text-transform: none;
+  }
 }
 
 .parallax-container {
   margin-top: 3rem;
-}
-
-.section-3 {
-  
 }

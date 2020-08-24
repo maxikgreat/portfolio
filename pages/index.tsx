@@ -9,41 +9,7 @@ import { useGetUser } from '@/actions/user';
 import { ParallaxIcon } from '@/components/shared/ParallaxIcon';
 
 const roles = ['Developer', 'Tech lover', 'Team player'];
-const awesomeTextShow = 400; // scroll position when text will appear in px
-
-
-interface AwesomeSectionProps {
-  currentScroll: number,
-}
-
-const AwesomeSection = ({ currentScroll }: AwesomeSectionProps) => {
-  const awesomeProps = useSpring({
-    config: config.slow,
-    transform: currentScroll > awesomeTextShow 
-      ? 'rotate(-16deg) translateX(0px)'
-      : 'rotate(-16deg) translateX(200px)',
-    opacity: currentScroll > awesomeTextShow ? 1 : 0,
-  });
-
-  console.log(currentScroll);
-
-  return (
-    <>
-      {console.log(currentScroll)}
-      <img 
-        className="image-section-2 image-bordered-shadow"
-        src="/assets/images/section-2.jpg" 
-        alt="section two"
-      />
-      <animated.h2 
-        className="title-with-awesome special-text"
-        style={awesomeProps}
-      >
-        Example txt
-      </animated.h2>
-    </>
-  )
-}
+const awesomeTextShow = 600; // scroll position when text will appear in px
 
 export default function Home() {
   const { data, loading } = useGetUser();
@@ -74,6 +40,14 @@ export default function Home() {
       transform: 'translateX(100%)',
       opacity: 0,
     }
+  });
+
+  const awesomeProps = useSpring({
+    config: config.slow,
+    transform: parallaxScrollPos > awesomeTextShow 
+      ? 'rotate(-16deg) translateX(0px)'
+      : 'rotate(-16deg) translateX(200px)',
+    opacity: parallaxScrollPos > awesomeTextShow ? 1 : 0,
   });
 
   const getParallaxPosition = (): void => {
@@ -148,22 +122,49 @@ export default function Home() {
             offset={1}
             speed={0.2}
           >
-            <AwesomeSection
-              currentScroll={parallaxScrollPos}
+            <img
+              className={
+                `image-section-2 image-bordered-shadow 
+                ${parallaxScrollPos > awesomeTextShow ? 'blur' : ''}`
+              }
+              src="/assets/images/section-2.jpg" 
+              alt="section two"
             />
           </ParallaxLayer>
           <ParallaxLayer
-            offset={1.25}
-            speed={0.7}
+            offset={1.35}
+            speed={0.8}
           >
-            <div className="section-3">
-              <img 
-                className="image-section-3 image-bordered-shadow"
-                src="/assets/images/section-3.jpg" 
-                alt="section three"
-              />
-            </div>
+            <animated.h2 
+              className="title-with-awesome special-text"
+              style={awesomeProps}
+            >
+              Example txt<br />
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, aliquid.
+              </span>
+            </animated.h2>
           </ParallaxLayer>
+          <ParallaxLayer
+            offset={1.25}
+            speed={1}
+          >
+            <img 
+              className="image-section-3 image-bordered-shadow"
+              src="/assets/images/section-3.jpg" 
+              alt="section three"
+            />
+          </ParallaxLayer>
+          {/* <ParallaxLayer
+            offset={1.5}
+            speed={1.25}
+          >
+            <img
+              className="image-section-4"
+              src="/assets/images/section-4.jpg"
+              alt="section four"
+            />
+          </ParallaxLayer> */}
           {/* <ParallaxIcon
             offset={0.98}
             speed={0}
