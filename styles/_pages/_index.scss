@@ -36,7 +36,10 @@
 .image-section-1 {
   width: auto;
   max-width: 100%;
+  height: 600px;
   z-index: -10px;
+  background-image: linear-gradient(45deg, rgba($accent-dark, 0.7) 0%,rgba($primary, 0.3) 100%), url('/assets/images/section-1.jpg');
+  background-size: cover;
 }
 
 .image-section-2 {
@@ -49,6 +52,7 @@
 }
 
 .image-section-3 {
+  transition: 0.5s all ease-in-out;
   position: absolute;
   left: -10%;
   width: 30%;

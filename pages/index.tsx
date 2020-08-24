@@ -79,7 +79,7 @@ export default function Home() {
                         Have a look at my portfolio and job history
                       </div>
                     </div>
-                    <img className="image-section-1 image-bordered-shadow" src="assets/images/section-1.jpg"/>
+                    <div className="image-section-1 image-bordered-shadow" />
                     <div className="shadow-custom">
                       <div className="shadow-inner"> </div>
                     </div>
