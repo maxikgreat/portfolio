@@ -79,6 +79,40 @@
   z-index: -10px;
 }
 
+.image-section-6 {
+  position: absolute;
+  left: 0;
+  background-image: url('/assets/images/section-6.jpg');
+  background-size: cover;
+}
+
+.image-section-7 {
+  position: absolute;
+  left: 25%;
+  background-image: url('/assets/images/section-7.jpg');
+  background-size: cover;
+}
+
+.image-section-8 {
+  position: absolute;
+  left: 50%;
+  background-image: url('/assets/images/section-8.jpg');
+  background-size: cover;
+}
+
+.image-section-9 {
+  position: absolute;
+  left: 75%;
+  background-image: url('/assets/images/section-9.jpg');
+  background-size: cover;
+}
+
+.quart-image {
+  width: 25%;
+  height: 100vh;
+}
+
+
 .image-section {
   width: 100%;
 }

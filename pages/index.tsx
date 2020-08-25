@@ -60,10 +60,11 @@ export default function Home() {
       <section className="home-section">
         <Parallax 
           ref={parallaxRef} 
-          pages={3}
+          pages={4}
           className="parallax-container"
           onScrollCapture={scrollParallaxHandler}
         >
+          {/* FIRST SECTION */}
           <ParallaxLayer
             offset={0}
             speed={0}
@@ -118,6 +119,7 @@ export default function Home() {
               </Grid.Row>
             </Grid>
           </ParallaxLayer>
+          {/* SECOND SECTION */}
           <ParallaxLayer
             offset={1}
             speed={0.2}
@@ -159,6 +161,8 @@ export default function Home() {
               alt="section three"
             />
           </ParallaxLayer>
+
+          {/* THIRD SECTION */}
           <ParallaxLayer
             offset={2}
             speed={1.25}
@@ -182,8 +186,34 @@ export default function Home() {
                 ${parallaxScrollPos > lastSectionShow ? '' : 'blur'}`
               }
               src="/assets/images/section-5.png"
-              alt="section four"
+              alt="section five"
             />
+          </ParallaxLayer>
+
+          {/* FOURTH SECTION */}
+          <ParallaxLayer
+            offset={3}
+            speed={0}
+          >
+            <div className="quart-image image-section-6" />
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={3}
+            speed={0.33}
+          >
+            <div className="quart-image image-section-7" />
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={3}
+            speed={0.66}
+          >
+            <div className="quart-image image-section-8" />
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={3}
+            speed={0.99}
+          >
+            <div className="quart-image image-section-9" />
           </ParallaxLayer>
           {/* <ParallaxIcon
             offset={0.98}
