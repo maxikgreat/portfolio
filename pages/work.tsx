@@ -47,7 +47,6 @@ export default function Work({ works }: WorkProps) {
     elements.map((elem, index) => ({
       ref: elementWorkRef,
       config: config.slow,
-      elem,
       delay: delayValue * index,
       transform: 'translateY(0)',
       opacity: 1,

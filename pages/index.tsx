@@ -1,16 +1,35 @@
 import { useRef, useState } from 'react';
 import { Grid } from 'semantic-ui-react';
 import Typed from 'react-typed';
-import { useSpring, animated, config, useChain, ReactSpringHook } from 'react-spring';
+import { useSpring, animated, config, useChain, useSprings, SpringValue } from 'react-spring';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { useGetUser } from '@/actions/user';
-import { ParallaxIcon } from '@/components/shared/ParallaxIcon';
 
 const roles = ['Developer', 'Tech lover', 'Team player'];
+const cards = [
+  {
+    index: 6,
+    speed: 0,
+  },
+  {
+    index: 7,
+    speed: 0.99,
+  },
+  {
+    index: 8,
+    speed: 0.33,
+  },
+  {
+    index: 9,
+    speed: 0.66,
+  },
+];
+
 const awesomeTextShow = 700; // scroll position when text will appear in px
-const lastSectionShow = 1470;
+const maskSectionShow = 1470;
+const cardsSectionShow = 2000;
 
 export default function Home() {
   const { data, loading } = useGetUser();
@@ -51,7 +70,25 @@ export default function Home() {
     opacity: parallaxScrollPos > awesomeTextShow ? 1 : 0,
   });
 
+  const cardsProps: {
+    card: SpringValue<any>,
+    left: SpringValue<string>
+  }[] = useSprings(cards.length, cards.map(
+    (card, index) => ({
+      card,
+      config: config.slow,
+      delay: 200 * index,
+      left: parallaxScrollPos > cardsSectionShow 
+        ? `${index === 0 ? '0' : index * 25}%`
+        : `${index === 0 ? '0' : index + '0'}%`,
+      opacity: parallaxScrollPos > cardsSectionShow ? 1 : 0,
+    })
+  ));
+
+
   const scrollParallaxHandler = (): void => setParallaxScrollPos(parallaxRef.current.current);
+
+  // const paramsLoaded = (): boolean => cardsProps.every(props => props.card.animation.to?.speed);
 
   useChain([{ current: photoRef.current }, textRef], [0, 1]);
 
@@ -134,6 +171,12 @@ export default function Home() {
             />
           </ParallaxLayer>
           <ParallaxLayer
+            offset={1.1}
+            speed={0}
+          >
+            <h2 className="section-title special-text">shortly about</h2>
+          </ParallaxLayer>
+          <ParallaxLayer
             offset={1.30}
             speed={0.8}
           >
@@ -170,11 +213,17 @@ export default function Home() {
             <img
               className={
                 `image-section-4 image-bordered-shadow 
-                ${parallaxScrollPos > lastSectionShow ? 'blur' : ''}`
+                ${parallaxScrollPos > maskSectionShow ? 'blur' : ''}`
               }
               src="/assets/images/section-4.jpg"
               alt="section four"
             />
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={2}
+            speed={0}
+          >
+            <h2 className="section-title special-text">main skills</h2>
           </ParallaxLayer>
           <ParallaxLayer
             offset={2.1}
@@ -183,7 +232,7 @@ export default function Home() {
             <img
               className={
                 `image-section-5 
-                ${parallaxScrollPos > lastSectionShow ? '' : 'blur'}`
+                ${parallaxScrollPos > maskSectionShow ? '' : 'blur'}`
               }
               src="/assets/images/section-5.png"
               alt="section five"
@@ -195,26 +244,28 @@ export default function Home() {
             offset={3}
             speed={0}
           >
-            <div className="quart-image image-section-6" />
+            <h2 className="section-title special-text">find me on</h2>
           </ParallaxLayer>
-          <ParallaxLayer
-            offset={3}
-            speed={0.33}
-          >
-            <div className="quart-image image-section-7" />
-          </ParallaxLayer>
-          <ParallaxLayer
-            offset={3}
-            speed={0.66}
-          >
-            <div className="quart-image image-section-8" />
-          </ParallaxLayer>
-          <ParallaxLayer
-            offset={3}
-            speed={0.99}
-          >
-            <div className="quart-image image-section-9" />
-          </ParallaxLayer>
+          {parallaxScrollPos > maskSectionShow && cardsProps.map((props, index) => (
+            <ParallaxLayer
+              offset={3}
+              speed={props.card.animation.to?.speed}
+              key={index}
+            >
+              <animated.div 
+                style={props}
+                className={`image-bordered-shadow quart-image image-section-${props.card.animation.to?.index}`}
+              >
+                <a
+                  target="_blank"
+                  className="socials" 
+                  href="https://google.com"
+                >
+                  <h3>Instagram</h3>
+                </a>
+              </animated.div>
+            </ParallaxLayer>
+          ))}
           {/* <ParallaxIcon
             offset={0.98}
             speed={0}

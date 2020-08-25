@@ -88,21 +88,21 @@
 
 .image-section-7 {
   position: absolute;
-  left: 25%;
+  left: 10%;
   background-image: url('/assets/images/section-7.jpg');
   background-size: cover;
 }
 
 .image-section-8 {
   position: absolute;
-  left: 50%;
+  left: 20%;
   background-image: url('/assets/images/section-8.jpg');
   background-size: cover;
 }
 
 .image-section-9 {
   position: absolute;
-  left: 75%;
+  left: 30%;
   background-image: url('/assets/images/section-9.jpg');
   background-size: cover;
 }
@@ -110,11 +110,25 @@
 .quart-image {
   width: 25%;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a.socials {
+    z-index: 999999;
+    cursor: pointer;
+    h3 {
+      font-size: 2rem;
+    }
+  }
 }
-
 
 .image-section {
   width: 100%;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 5rem;
 }
 
 .hero-welcome {
