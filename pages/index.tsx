@@ -12,18 +12,26 @@ const cards = [
   {
     index: 6,
     speed: 0,
+    title: 'Gmail',
+    link: 'mailto:maximvasylenko228322@gmail.com',
   },
   {
     index: 7,
     speed: 0.99,
+    title: 'GitHub',
+    link: 'https://www.github.com/maxikgreat',
   },
   {
     index: 8,
     speed: 0.33,
+    title: 'Instagram',
+    link: 'https://www.instagram.com/lavrov_kh',
   },
   {
     index: 9,
     speed: 0.66,
+    title: 'LinkedIn',
+    link: 'https://www.linkedin.com/in/mvasylenko/',
   },
 ];
 
@@ -251,19 +259,20 @@ export default function Home() {
               offset={3}
               speed={props.card.animation.to?.speed}
               key={index}
+              factor={0.2}
             >
               <animated.div 
                 style={props}
                 className={`image-bordered-shadow quart-image image-section-${props.card.animation.to?.index}`}
+              />
+              <animated.a
+                target="_blank"
+                className="socials" 
+                href={props.card.animation.to?.link}
+                style={props}
               >
-                <a
-                  target="_blank"
-                  className="socials" 
-                  href="https://google.com"
-                >
-                  <h3>Instagram</h3>
-                </a>
-              </animated.div>
+                <h3 className="special-text">{props.card.animation.to?.title}</h3>
+              </animated.a>
             </ParallaxLayer>
           ))}
           {/* <ParallaxIcon
