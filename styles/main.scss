@@ -53,6 +53,17 @@ h1, h2, h3, h4, h5, h6, button {
     color: $primary-light;
     text-shadow: 2px 2px $accent-dark;
   }
+  &-white {
+    color: $white;
+  }
+}
+
+.hover-text {
+  transition: 0.2s all ease-in-out;
+  &:hover {
+    color: $primary-light;
+    text-shadow: 4px 4px $accent-dark;
+  }
 }
 
 .image-bordered-shadow {

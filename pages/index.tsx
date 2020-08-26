@@ -42,6 +42,8 @@ const cards = [
 const awesomeTextShow = 700; // scroll position when text will appear in px
 const maskSectionShow = 1470;
 const cardsSectionShow = 2000;
+const shortlyAbout = 'Excellent problem-solving skills and ability to perform well in a team. Seeking to help companies develop their product as a Frontend / React Native developer, as well as grow and develop my own skills as a coder'.split(' ');
+
 
 export default function Home() {
   const { data, loading } = useGetUser();
@@ -172,6 +174,7 @@ export default function Home() {
           <ParallaxLayer
             offset={1}
             speed={0.2}
+            factor={0}
           >
             <img
               className={
@@ -185,27 +188,31 @@ export default function Home() {
           <ParallaxLayer
             offset={1.1}
             speed={0}
+            factor={0}
           >
             <h2 className="section-title special-text">shortly about</h2>
           </ParallaxLayer>
           <ParallaxLayer
             offset={1.30}
             speed={0.8}
+            factor={0}
           >
             <animated.h2 
               className="title-with-awesome special-text"
               style={awesomeProps}
             >
-              Example txt<br />
-              <span>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, pariatur ea fugiat inventore laborum in deleniti error iste quis delectus?
+              Passionate about...<br />
+              <span className="special-text-white">
+                {shortlyAbout.map(word => (
+                  <span className="hover-text">{word}&nbsp;</span>
+                ))}
               </span>
-              <span onClick={() => parallaxRef.current.scrollTo(2)}>next</span>
             </animated.h2>
           </ParallaxLayer>
           <ParallaxLayer
             offset={1.30}
             speed={1}
+            factor={0}
           >
             <img 
               className={
@@ -263,15 +270,11 @@ export default function Home() {
               offset={3}
               speed={props.card.animation.to?.speed}
               key={index}
-              factor={0.20}
+              factor={0}
             >
-              <animated.div 
-                style={props}
-                className={`image-bordered-shadow quart-image image-section-${props.card.animation.to?.index}`}
-              />
               <animated.a
-                target="_blank"
-                className="socials" 
+                className={`socials image-bordered-shadow quart-image image-section-${props.card.animation.to?.index}`}
+                target="_blank" 
                 href={props.card.animation.to?.link}
                 style={props}
               >
