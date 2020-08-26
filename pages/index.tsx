@@ -13,24 +13,28 @@ const cards = [
     index: 6,
     speed: 0,
     title: 'Gmail',
+    image: 'gmail',
     link: 'mailto:maximvasylenko228322@gmail.com',
   },
   {
     index: 7,
     speed: 0.99,
     title: 'GitHub',
+    image: 'github',
     link: 'https://www.github.com/maxikgreat',
   },
   {
     index: 8,
     speed: 0.33,
     title: 'Instagram',
+    image: 'instagram',
     link: 'https://www.instagram.com/lavrov_kh',
   },
   {
     index: 9,
     speed: 0.66,
     title: 'LinkedIn',
+    image: 'linkedin',
     link: 'https://www.linkedin.com/in/mvasylenko/',
   },
 ];
@@ -259,7 +263,7 @@ export default function Home() {
               offset={3}
               speed={props.card.animation.to?.speed}
               key={index}
-              factor={0.2}
+              factor={0.20}
             >
               <animated.div 
                 style={props}
@@ -272,6 +276,13 @@ export default function Home() {
                 style={props}
               >
                 <h3 className="special-text">{props.card.animation.to?.title}</h3>
+                <img 
+                  className="socials-image" 
+                  src={`/assets/images/icons/${props.card.animation.to?.image}.png`} 
+                  style={{
+                    borderRadius: props.card.animation.to?.title === 'GitHub' ? 30 : 0
+                  }}
+                />
               </animated.a>
             </ParallaxLayer>
           ))}
