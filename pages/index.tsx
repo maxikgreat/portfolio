@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Progress } from 'semantic-ui-react';
 import Typed from 'react-typed';
 import { useSpring, animated, config, useChain, useSprings, SpringValue } from 'react-spring';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
@@ -38,6 +38,39 @@ const cards = [
     link: 'https://www.linkedin.com/in/mvasylenko/',
   },
 ];
+
+const skills = [
+  {
+    value: 90,
+    text: 'HTML/CSS/JavaScript/TypeScript'
+  },
+  {
+    value: 80,
+    text: 'React/Redux/Next'
+  },
+  {
+    value: 80,
+    text: 'React Native'
+  },
+  {
+    value: 70,
+    text: 'Node/Express'
+  },
+  {
+    value: 80,
+    text: 'RWD/Bootstrap/Semantic UI/Material UI'
+  },
+  {
+    value: 60,
+    text: 'Git'
+  },
+  {
+    value: 30,
+    text: 'PHP(Laravel)/SQL'
+  }
+];
+
+const delay = 200; // in ms
 
 const awesomeTextShow = 700; // scroll position when text will appear in px
 const maskSectionShow = 1470;
@@ -91,7 +124,7 @@ export default function Home() {
     (card, index) => ({
       card,
       config: config.slow,
-      delay: 200 * index,
+      delay: delay * index,
       left: parallaxScrollPos > cardsSectionShow 
         ? `${index === 0 ? '0' : index * 25}%`
         : `${index === 0 ? '0' : index + '0'}%`,
@@ -99,10 +132,19 @@ export default function Home() {
     })
   ));
 
+  const skillsProps = useSprings(skills.length, skills.map(
+    (skill, index) => ({
+      skill,
+      config: config.slow,
+      delay: delay * index,
+      transform: parallaxScrollPos > maskSectionShow 
+        ? 'translateX(0)' : 'translateX(100%)',
+      opacity: parallaxScrollPos > maskSectionShow ? 1 : 0,
+    })
+  ));
+
 
   const scrollParallaxHandler = (): void => setParallaxScrollPos(parallaxRef.current.current);
-
-  // const paramsLoaded = (): boolean => cardsProps.every(props => props.card.animation.to?.speed);
 
   useChain([{ current: photoRef.current }, textRef], [0, 1]);
 
@@ -203,8 +245,8 @@ export default function Home() {
             >
               Passionate about...<br />
               <span className="special-text-white">
-                {shortlyAbout.map(word => (
-                  <span className="hover-text">{word}&nbsp;</span>
+                {shortlyAbout.map((word, index) => (
+                  <span key={index} className="hover-text">{word}&nbsp;</span>
                 ))}
               </span>
             </animated.h2>
@@ -239,25 +281,41 @@ export default function Home() {
             />
           </ParallaxLayer>
           <ParallaxLayer
+            offset={2.1}
+            speed={2}
+            className="flexed-layer"
+            factor={0.7}
+          >
+            <div className="skills-image-container">
+              <img
+                className={
+                  `image-section-5 
+                  ${parallaxScrollPos > maskSectionShow ? '' : 'blur'}`
+                }
+                src="/assets/images/section-5.png"
+                alt="section five"
+              />
+            </div>
+            <div className="skills-container">
+              {skillsProps.map((props, index) => (
+                <animated.div className="progress-container" style={props} key={index}>
+                  <Progress
+                    size="small"
+                    percent={props.skill.animation.to?.value}
+                    indicating
+                  >
+                    <span className="special-text">{props.skill.animation.to?.text}</span>
+                  </Progress>
+                </animated.div>
+              ))}
+            </div>
+          </ParallaxLayer>
+          <ParallaxLayer
             offset={2}
             speed={0}
           >
             <h2 className="section-title special-text">main skills</h2>
           </ParallaxLayer>
-          <ParallaxLayer
-            offset={2.1}
-            speed={2}
-          >
-            <img
-              className={
-                `image-section-5 
-                ${parallaxScrollPos > maskSectionShow ? '' : 'blur'}`
-              }
-              src="/assets/images/section-5.png"
-              alt="section five"
-            />
-          </ParallaxLayer>
-
           {/* FOURTH SECTION */}
           <ParallaxLayer
             offset={3}

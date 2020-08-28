@@ -37,7 +37,7 @@
   width: auto;
   max-width: 100%;
   height: 600px;
-  z-index: -10px;
+  z-index: -10;
   background-image: linear-gradient(45deg, rgba($accent-dark, 0.7) 0%,rgba($primary, 0.3) 100%), url('/assets/images/section-1.jpg');
   background-size: cover;
 }
@@ -48,7 +48,7 @@
   position: absolute;
   left: 10%;
   border-right: none !important;
-  z-index: -10px;
+  z-index: -10;
 }
 
 .image-section-3 {
@@ -58,7 +58,7 @@
   width: 30%;
   border-left: none !important;
   transform: rotate(-16deg);
-  z-index: -10px;
+  z-index: -10;
 }
 
 .image-section-4 {
@@ -67,16 +67,13 @@
   height: 95%;
   position: absolute;
   border-left: none !important;
-  z-index: -10px;
+  z-index: -10;
 }
 
 .image-section-5 {
   transition: 0.5s all ease-in-out;
-  width: 25%;
-  position: absolute;
-  left: 5%;
-  padding: 1.5rem;
-  z-index: -10px;
+  width: 100%;
+  z-index: -10;
 }
 
 .image-section-6 {
@@ -107,15 +104,44 @@
   background-size: cover;
 }
 
-// .quart-image {
-  
-//   height: 100vh;
-//   filter: blur(2px) grayscale(0.5);
-//   &:hover {
-//     filter: blur(0) grayscale(0);
-//     transform: scale(1.01);
-//   }
-// }
+.skills-image-container {
+  width: 30%;
+  height: 100%;
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+.skills-container {
+  padding: 1rem 4rem 1rem 1rem;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .progress-container {
+    width: 100%;
+    height: 100%;
+    .ui.progress {
+      margin: 0 0 4rem;
+      &:first-child {
+        margin: 0 0 4rem;
+      }
+      &:last-child {
+        margin: 0;
+      }
+      .bar {
+        background: linear-gradient(270deg, $primary 0%, $accent 100%);
+        box-shadow: 0px 0px 20px 5px rgba($accent, 0.5);
+      }
+      .label {
+        margin-top: 10px;
+        text-align: left;
+        span {
+          font-size: 1.75rem;
+        }
+      } 
+    }
+  }
+}
 
 a.socials {
   position: absolute;
@@ -128,10 +154,9 @@ a.socials {
   z-index: 10;
   cursor: pointer;
   filter: blur(2px) grayscale(0.5);
-  transition: 0.4s transform ease-in-out;
+  transition: 0.4s transform ease-in-out, 0.4s filter ease-in-out;
   h3 {
     position: absolute;
-    font-family: 'DancingScript' !important;
     font-size: 4rem;
     text-decoration: underline;
     top: 40%;
@@ -146,7 +171,6 @@ a.socials {
     filter: none;
   }
 }
-
 
 .image-section {
   width: 100%;

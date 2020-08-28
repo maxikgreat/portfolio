@@ -75,4 +75,9 @@ h1, h2, h3, h4, h5, h6, button {
   filter: blur(10px) grayscale(0.4);
 }
 
+.flexed-layer {
+  display: flex;
+  align-items: center;
+}
+
 @import './respo';
