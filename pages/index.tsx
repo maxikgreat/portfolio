@@ -3,9 +3,13 @@ import { Grid, Progress } from 'semantic-ui-react';
 import Typed from 'react-typed';
 import { useSpring, animated, config, useChain, useSprings, SpringValue } from 'react-spring';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
+import Chance from 'chance';
 
+import { ParallaxIcon } from '@/components/shared/ParallaxIcon';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { useGetUser } from '@/actions/user';
+
+const chance = new Chance();
 
 const roles = ['Developer', 'Tech lover', 'Team player'];
 const cards = [
@@ -69,6 +73,105 @@ const skills = [
     text: 'PHP(Laravel)/SQL'
   }
 ];
+
+const icons = [
+  {
+    name: 'react',
+    alt: 'react-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'bootstrap',
+    alt: 'bootstrap-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'next',
+    alt: 'next-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'redux',
+    alt: 'redux-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'typescript',
+    alt: 'typescript-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'js',
+    alt: 'js-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'webpack',
+    alt: 'webpack-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'express',
+    alt: 'express-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'node',
+    alt: 'node-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'sass',
+    alt: 'sass-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'semantic',
+    alt: 'semantic-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+  {
+    name: 'mongo',
+    alt: 'mongo-logo',
+    offset: chance.floating({ min: 2, max: 2.9, float: 2 }),
+    speed: chance.floating({ min: 0, max: 2, float: 2 }),
+    marginLeft: chance.integer({ min: 10, max: 80 }),
+    opacity: chance.floating({ min: 0.3, max: 0.7, float: 2 })
+  },
+]
 
 const delay = 200; // in ms
 
@@ -142,7 +245,6 @@ export default function Home() {
       opacity: parallaxScrollPos > maskSectionShow ? 1 : 0,
     })
   ));
-
 
   const scrollParallaxHandler = (): void => setParallaxScrollPos(parallaxRef.current.current);
 
@@ -280,6 +382,18 @@ export default function Home() {
               alt="section four"
             />
           </ParallaxLayer>
+          {icons.map(({ name, alt, marginLeft, offset, speed, opacity }, index) => (
+            <ParallaxIcon
+              offset={offset}
+              speed={speed}
+              name={name}
+              alt={alt}
+              marginLeftPercent={marginLeft}
+              widthPercent={10}
+              opacity={opacity}
+              className={parallaxScrollPos > maskSectionShow ? 'icon' : 'icon blur'}
+            />
+          ))}
           <ParallaxLayer
             offset={2.1}
             speed={2}
@@ -347,14 +461,6 @@ export default function Home() {
               </animated.a>
             </ParallaxLayer>
           ))}
-          {/* <ParallaxIcon
-            offset={0.98}
-            speed={0}
-            name="react"
-            alt="react-logo"
-            marginLeftPercent={0}
-            widthPercent={20}
-          /> */}
         </Parallax>
       </section>
     </BaseLayout>

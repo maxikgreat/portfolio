@@ -143,6 +143,10 @@
   }
 }
 
+.icon {
+  transition: 0.2s filter ease-in-out;
+}
+
 a.socials {
   position: absolute;
   width: 25%;

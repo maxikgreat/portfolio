@@ -8,15 +8,17 @@ interface ParallaxIconProps {
   alt: string,
   marginLeftPercent: number,
   widthPercent: number,
+  opacity: number,
 }
 
 export const ParallaxIcon = ({
-  offset, speed, name, className, alt, marginLeftPercent, widthPercent
+  offset, speed, name, className, alt, marginLeftPercent, widthPercent, opacity
 }: ParallaxIconProps) => {
   return (
     <ParallaxLayer
       offset={offset}
       speed={speed}
+      factor={0.1}
     >
       <img
         src={`/assets/images/icons/${name}.png`}
@@ -24,7 +26,8 @@ export const ParallaxIcon = ({
         alt={alt}
         style={{
           marginLeft: `${marginLeftPercent}%`,
-          width: `${widthPercent}%`
+          width: `${widthPercent}%`,
+          opacity,
         }}
       />
     </ParallaxLayer>
