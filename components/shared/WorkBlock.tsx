@@ -4,13 +4,13 @@ import { CSSProperties } from 'react';
 import { IWork } from "@/types/models";
 
 interface WorkBlockProps {
-  work: IWork,
+  // work: IWork,
   props: {
     transform: SpringValue<string>,
   },
 }
 
-export const WorkBlock = ({ props, work }: WorkBlockProps) => (
+export const WorkBlock = ({ props }: WorkBlockProps) => (
   <animated.div className="cd-timeline-block" style={props} >
     <div className="cd-timeline-data special-text-white">
       <span>01.20.2021</span>

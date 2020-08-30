@@ -10,14 +10,14 @@ import WorkModel from '@/models/Work';
 import { IWork } from '@/types/models';
 import { WorkBlock } from '@/components/shared/WorkBlock';
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await new WorkModel().getAll();
-  return {
-    props: {
-      works: data
-    }
-  }
-}
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const { data } = await new WorkModel().getAll();
+//   return {
+//     props: {
+//       works: data
+//     }
+//   }
+// }
 
 interface WorkProps {
   works: IWork[]
