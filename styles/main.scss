@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5, h6, button {
   }
   &-white {
     color: $white;
+    text-shadow: 4px 4px $accent-dark;
   }
 }
 

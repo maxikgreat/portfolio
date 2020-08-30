@@ -7,6 +7,6 @@ export interface IWork {
   jobPosition: string,
   startDate: Date,
   endDate: Date,
-  description: string,
+  descriptionPoints: string[],
   createdAt: Date,
 }
