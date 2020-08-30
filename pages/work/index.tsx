@@ -64,7 +64,7 @@ export default function Work({ works }: WorkProps) {
 
   return (
     <BaseLayout data={data} loading={loading}>
-      <BasePage>
+      <BasePage title="Helped me to grow">
         <animated.div className="timeline" style={containerProps}>
           {elementsWork.map((props, index) => (
             <WorkBlock props={props} key={index}/>

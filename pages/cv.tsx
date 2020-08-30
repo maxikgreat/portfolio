@@ -6,8 +6,7 @@ export default function CV() {
   const { data, loading } = useGetUser();
   return (
     <BaseLayout data={data} loading={loading}>
-      <BasePage>
-        <h1>Hello cv</h1>
+      <BasePage title="Curriculum Vitae">
       </BasePage>
     </BaseLayout>
   )
