@@ -93,7 +93,9 @@ export default function Home() {
     })
   ));
 
-  const scrollParallaxHandler = (): void => setParallaxScrollPos(parallaxRef.current.current);
+  const scrollParallaxHandler = (): void => {
+    setParallaxScrollPos(parallaxRef.current.current);
+  }
 
   useChain([{ current: photoRef.current }, textRef], [0, 1]);
 
@@ -111,7 +113,7 @@ export default function Home() {
             offset={0}
             speed={0}
           >
-            <Grid columns={2} stackable>
+            <Grid columns={2}>
               <Grid.Row>
                 <Grid.Column>
                   <animated.div className="hero-section" style={photoProps}>
