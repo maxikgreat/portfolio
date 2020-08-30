@@ -12,7 +12,7 @@ import {
   maskSectionShow,
   cardsSectionShow, 
   skills,
-  cards,
+  socials,
   shortlyAbout, 
   delay,
   icons,
@@ -67,7 +67,7 @@ export default function Home() {
   const cardsProps: {
     card: SpringValue<any>,
     left: SpringValue<string>
-  }[] = useSprings(cards.length, cards.map(
+  }[] = useSprings(socials.length, socials.map(
     (card, index) => ({
       card,
       config: config.slow,

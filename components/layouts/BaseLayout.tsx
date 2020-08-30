@@ -8,6 +8,7 @@ import { Header } from '../shared/Header';
 import { MobileSideBar } from '../shared/MobileSideBar';
 import { Routes } from '@/types/app';
 import { User } from '@/types/auth0';
+import { socials } from '@/consts';
 
 interface BaseLayoutProps {
   children: ReactNode,
@@ -61,23 +62,30 @@ export const BaseLayout = ({ children, className = '', loading, data }: BaseLayo
       </Link>
     ))
   };
+
+  const renderSocials = (): JSX.Element[] => {
+    return socials.map(({ link, title, image }, index) => (
+      <a href={link} key={index} className="social-link">
+        <img src={`/assets/images/icons/${image}-menu.png`} alt={title} />
+      </a>
+    ))
+  };
+
   return (
     <>
       <MobileView renderWithFragment>
         <MobileSideBar
-          user={data}
-          loading={loading}
           visible={mobileMenu}
           setVisible={setMobileMenu}
           routes={renderRoutes()}
           userRoute={userRoute(true)}
+          socials={renderSocials()}
         />
       </MobileView>
       <Header
-        user={data}
-        loading={loading}
         setVisible={setMobileMenu}
         routes={renderRoutes()}
+        socials={renderSocials()}
         userRoute={userRoute(false)}
       />
       <main className={`${className}`}>

@@ -1,8 +1,21 @@
 .ui.vertical.sidebar.menu {
-  padding-top: 50px;
+  padding-top: 60px;
   background-color: rgba(0, 0, 0, 0.85);
   a {
     text-transform: uppercase;
     font-size: 16px;
+  }
+
+  .socials-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    a {
+      width: 25%;
+      img {
+        padding: 5px;
+        width: 100%;
+      }
+    }
   }
 }

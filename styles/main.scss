@@ -87,4 +87,24 @@ h1, h2, h3, h4, h5, h6, button {
   align-items: center;
 }
 
+.divider {
+  width: 2px;
+  height: 30px;
+  background-color: $primary;
+  margin: 0 10px 0 10px;
+}
+
+.social-link {
+  width: 50px;
+  img {
+    transition: 0.2s filter ease-in-out;
+    width: 100%;
+    padding: 10px;
+    filter: invert(96%) sepia(0%) saturate(0%) hue-rotate(107deg) brightness(104%) contrast(106%);
+    &:hover {
+      filter: invert(72%) sepia(78%) saturate(2788%) hue-rotate(336deg) brightness(103%) contrast(88%);
+    }
+  }
+}
+
 @import './respo';

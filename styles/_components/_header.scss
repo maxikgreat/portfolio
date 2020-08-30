@@ -8,6 +8,7 @@ header {
   padding: 10px 20px 0 20px;
   background-color: transparent;
   align-items: center;
+  position: relative;
   * {
     transition: all .3s ease;
     color: $white;
@@ -29,8 +30,4 @@ header {
     font-weight: bold;
     color: $primary;
   }
-}
-
-.nav-brand {
-  font-size: 20px;
 }

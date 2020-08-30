@@ -3,7 +3,7 @@ import Chance from 'chance';
 const chance = new Chance();
 
 export const roles = ['Developer', 'Tech lover', 'Team player'];
-export const cards = [
+export const socials = [
   {
     index: 6,
     speed: 0,

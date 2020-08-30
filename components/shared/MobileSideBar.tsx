@@ -6,12 +6,11 @@ interface MobileSideBar {
   visible: boolean,
   setVisible: (isVisible: boolean) => void,
   routes: JSX.Element[],
+  socials: JSX.Element[],
   userRoute: JSX.Element,
-  user: User,
-  loading: boolean
 }
 
-export const MobileSideBar = ({ visible, setVisible, routes, userRoute, user, loading }: MobileSideBar) => {
+export const MobileSideBar = ({ visible, setVisible, routes, userRoute, socials }: MobileSideBar) => {
   return (
     <Sidebar
       as={Menu}
@@ -25,6 +24,10 @@ export const MobileSideBar = ({ visible, setVisible, routes, userRoute, user, lo
     >
       {routes}
       <hr />
+      <div className="socials-container">
+        {socials}
+      </div>
+      <hr/> 
       {userRoute}
     </Sidebar>
   )
