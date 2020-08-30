@@ -79,6 +79,22 @@
     padding: 20px;
     font-size: 2rem;
   }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .title-with-awesome {
+    font-size: 2rem;
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  .image-section-2 {
+    width: 110%;
+    left: 0;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -126,5 +142,17 @@
   .btn-glow {
     padding: 20px;
     font-size: 1.5rem;
+  }
+
+  .title-with-awesome {
+    font-size: 1.5rem;
+    span {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  .image-section-2 {
+    top: 200px;
   }
 }
