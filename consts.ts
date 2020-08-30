@@ -1,4 +1,5 @@
 import Chance from 'chance';
+import { isMobile } from 'react-device-detect';
 
 const chance = new Chance();
 
@@ -166,7 +167,7 @@ export const icons = [
 
 export const delay = 200; // in ms
 
-export const awesomeTextShow = 650; // scroll position when text will appear in px
-export const maskSectionShow = 1420;
-export const cardsSectionShow = 1950;
+export const awesomeTextShow = !isMobile ? 600 : 400; // scroll position when text will appear in px
+export const maskSectionShow = !isMobile ? 1250 : 900;
+export const cardsSectionShow = !isMobile ? 1950 : 1300;
 export const shortlyAbout = 'Excellent problem-solving skills and ability to perform well in a team. Seeking to help companies develop their product as a Frontend / React Native developer, as well as grow and develop my own skills as a coder'.split(' ');

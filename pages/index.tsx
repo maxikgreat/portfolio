@@ -3,6 +3,7 @@ import { Grid, Progress } from 'semantic-ui-react';
 import Typed from 'react-typed';
 import { useSpring, animated, config, useChain, useSprings, SpringValue } from 'react-spring';
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax';
+import { isMobile } from 'react-device-detect';
 
 import { ParallaxIcon } from '@/components/shared/ParallaxIcon';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
@@ -97,6 +98,16 @@ export default function Home() {
     setParallaxScrollPos(parallaxRef.current.current);
   }
 
+  const socialCardsMobile = (index: number): number => {
+    switch(index) {
+      case 0: return 3.10;
+      case 1: return 3.30;
+      case 2: return 3.50;
+      case 3: return 3.70;
+      default: return 3;
+    }
+  }
+
   useChain([{ current: photoRef.current }, textRef], [0, 1]);
 
   return (
@@ -167,7 +178,6 @@ export default function Home() {
           <ParallaxLayer
             offset={1}
             speed={0.2}
-            factor={0}
           >
             <img
               className={
@@ -181,14 +191,12 @@ export default function Home() {
           <ParallaxLayer
             offset={1.1}
             speed={0}
-            factor={0}
           >
             <h2 className="section-title special-text">shortly about</h2>
           </ParallaxLayer>
           <ParallaxLayer
             offset={1.30}
             speed={0.8}
-            factor={0}
           >
             <animated.h2 
               className="title-with-awesome special-text"
@@ -205,7 +213,6 @@ export default function Home() {
           <ParallaxLayer
             offset={1.30}
             speed={1}
-            factor={0}
           >
             <img 
               className={
@@ -216,7 +223,6 @@ export default function Home() {
               alt="section three"
             />
           </ParallaxLayer>
-
           {/* THIRD SECTION */}
           <ParallaxLayer
             offset={2}
@@ -231,7 +237,7 @@ export default function Home() {
               alt="section four"
             />
           </ParallaxLayer>
-          {icons.map(({ name, alt, marginLeft, offset, speed, opacity }, index) => (
+          {!isMobile && icons.map(({ name, alt, marginLeft, offset, speed, opacity }, index) => (
             <ParallaxIcon
               offset={offset}
               speed={speed}
@@ -288,16 +294,20 @@ export default function Home() {
           </ParallaxLayer>
           {parallaxScrollPos > maskSectionShow && cardsProps.map((props, index) => (
             <ParallaxLayer
-              offset={3}
+              offset={isMobile ? socialCardsMobile(index) : 3}
               speed={props.card.animation.to?.speed}
               key={index}
               factor={0}
+              className="social-card"
             >
               <animated.a
                 className={`socials image-bordered-shadow quart-image image-section-${props.card.animation.to?.index}`}
                 target="_blank" 
                 href={props.card.animation.to?.link}
-                style={props}
+                style={!isMobile ? props : {
+                  ...props,
+                  left: 0,
+                }}
               >
                 <h3 className="special-text">{props.card.animation.to?.title}</h3>
                 <img 
