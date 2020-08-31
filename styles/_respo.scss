@@ -49,6 +49,15 @@
       font-size: 3rem;
     }
   }
+
+  section.base-page h1 {
+    font-size: 4rem;
+  }
+
+  .cd-timeline-data {
+    font-size: 1.5rem;
+  }
+  
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -119,6 +128,19 @@
     }
     img.socials-image {
       top: 48%;
+    }
+  }
+
+  section.base-page h1 {
+    font-size: 3rem;
+  }
+
+  .cd-timeline-content .timeline-content-title {
+    h2 {
+      font-size: 2.5rem;
+    }
+    h3 {
+      font-size: 1.5rem;
     }
   }
 }
@@ -210,5 +232,45 @@
       top: 27%;
       width: 10%;
     }
+  }
+
+
+  .timeline::before {
+    left: 25px;
+  }
+
+  .cd-timeline-data {
+    display: none;
+  }
+
+  .cd-timeline-content {
+    margin-left: 15px;
+  }
+
+  .cd-timeline-content .timeline-content-title {
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
+
+  .cd-timeline-content .timeline-content-general {
+    font-size: 1rem;
+  }
+
+  .cd-timeline-content .timeline-content-key {
+    font-size: 1.15rem;
+  }
+
+  .cd-timeline-data-mobile {
+    display: block;
+    position: absolute;
+    font-size: 1.5rem;
+    top: -7px;
+    left: 57px;
+    z-index: 10;
   }
 }

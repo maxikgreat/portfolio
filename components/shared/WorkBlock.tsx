@@ -18,6 +18,11 @@ export const WorkBlock = ({ props }: WorkBlockProps) => (
       <span>02.03.1876</span>
     </div>
     <div className="cd-timeline-img cd-picture"></div>
+    <div className="cd-timeline-data-mobile special-text-white">
+      <span>01.20.2021</span>
+      <span>&nbsp;-&nbsp;</span>
+      <span>02.03.1876</span>
+    </div>
     <div className="cd-timeline-content  image-bordered-shadow">
       <div className="timeline-content-title">
         <h2 className="special-text">Someend Developer</h2>
