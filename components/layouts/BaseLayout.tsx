@@ -65,7 +65,7 @@ export const BaseLayout = ({ children, className = '', loading, data }: BaseLayo
 
   const renderSocials = (): JSX.Element[] => {
     return socials.map(({ link, title, image }, index) => (
-      <a href={link} key={index} className="social-link">
+      <a href={link} key={index} className="social-link" target="_blank">
         <img src={`/assets/images/icons/${image}-menu.png`} alt={title} />
       </a>
     ))

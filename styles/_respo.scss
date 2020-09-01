@@ -131,9 +131,13 @@
     }
   }
 
-  section.base-page h1 {
-    font-size: 3rem;
-  }
+  section.base-page {
+    margin: 2rem 0 2rem 0;
+
+    h1 {
+      font-size: 3rem;
+    }
+  } 
 
   .cd-timeline-content .timeline-content-title {
     h2 {
@@ -142,6 +146,10 @@
     h3 {
       font-size: 1.5rem;
     }
+  }
+
+  .progress-container {
+    margin-bottom: 10px;
   }
 }
 
@@ -232,6 +240,10 @@
       top: 27%;
       width: 10%;
     }
+  }
+
+  section.base-page {
+    margin: 1rem 0 1rem 0;
   }
 
 
