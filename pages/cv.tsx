@@ -5,7 +5,7 @@ import { useGetUser } from '@/actions/user';
 export default function CV() {
   const { data, loading } = useGetUser();
   return (
-    <BaseLayout data={data} loading={loading}>
+    <BaseLayout data={data} loading={loading} title="CV">
       <BasePage className="cv" title="Curriculum Vitae">
         <embed 
           src="assets/Maksym_Vasylenko_CV.pdf" 

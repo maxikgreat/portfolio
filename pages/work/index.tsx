@@ -1,5 +1,5 @@
 import { useSpring, animated, config, useChain, useSprings, SpringValue } from 'react-spring';
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 
 import { delay } from '@/consts';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
@@ -66,7 +66,7 @@ export default function Work({ works }: WorkProps) {
 
   // TODO remaster useGetUser
   return (
-    <BaseLayout data={null} loading={false}>
+    <BaseLayout data={null} loading={false} title="Work">
       <BasePage title="Helped me to grow">
         <animated.div className="timeline" style={containerProps}>
           {elementsWork.map((props, index) => (

@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import Head from 'next/head';
 import { MobileView } from "react-device-detect";
 
 import { Menu } from 'semantic-ui-react';
@@ -14,10 +15,11 @@ interface BaseLayoutProps {
   children: ReactNode,
   className?: string,
   loading: boolean,
-  data: User
+  data: User,
+  title?: string,
 }
 
-export const BaseLayout = ({ children, className = '', loading, data }: BaseLayoutProps) => {
+export const BaseLayout = ({ children, className = '', loading, data, title = 'Portfolio' }: BaseLayoutProps) => {
   const router = useRouter();
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
@@ -73,6 +75,12 @@ export const BaseLayout = ({ children, className = '', loading, data }: BaseLayo
 
   return (
     <>
+      <Head>
+        <title>{title} | Maksym Vasylenko</title>
+        <meta name="keywords" content="portfolio, application, developer, programing, javascript, work, project, web, spa"/>
+        <meta name="description" content="It's a portfolio site-application of Maksym Vasylenko"/>
+        <meta charSet="utf-8" />
+      </Head>
       <MobileView renderWithFragment>
         <MobileSideBar
           visible={mobileMenu}

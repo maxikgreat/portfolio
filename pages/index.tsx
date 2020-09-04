@@ -111,7 +111,7 @@ export default function Home() {
   useChain([{ current: photoRef.current }, textRef], [0, 1]);
 
   return (
-    <BaseLayout data={data} loading={loading}>
+    <BaseLayout data={data} loading={loading} title="Home">
       <section className="home-section">
         <Parallax 
           ref={parallaxRef} 
