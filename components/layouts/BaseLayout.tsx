@@ -41,7 +41,9 @@ export const BaseLayout = ({ children, className = '', loading, data, title = 'P
       );
     }
 
-    return userLink;
+    // return userLink;
+
+    return null;
   }
 
   const userRoute = (isMobile: boolean): JSX.Element => !loading 

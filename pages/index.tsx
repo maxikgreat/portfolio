@@ -21,7 +21,7 @@ import {
 } from '@/consts';
 
 export default function Home() {
-  const { data, loading } = useGetUser();
+  // const { data, loading } = useGetUser();
 
   const parallaxRef = useRef<IParallax>();
   const photoRef = useRef();
@@ -108,10 +108,10 @@ export default function Home() {
     }
   }
 
-  useChain([{ current: photoRef.current }, textRef], [0, 1]);
+  useChain([photoRef, textRef], [0, 1]);
 
   return (
-    <BaseLayout data={data} loading={loading} title="Home">
+    <BaseLayout data={null} loading={null} title="Home">
       <section className="home-section">
         <Parallax 
           ref={parallaxRef} 
