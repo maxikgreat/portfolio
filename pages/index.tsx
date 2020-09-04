@@ -239,6 +239,7 @@ export default function Home() {
           </ParallaxLayer>
           {!isMobile && icons.map(({ name, alt, marginLeft, offset, speed, opacity }, index) => (
             <ParallaxIcon
+              key={index}
               offset={offset}
               speed={speed}
               name={name}

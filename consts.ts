@@ -49,16 +49,16 @@ export const skills = [
     text: 'React Native'
   },
   {
+    value: 80,
+    text: 'SASS/RWD/Bootstrap/Semantic UI/Material UI'
+  },
+  {
     value: 70,
     text: 'Node/Express'
   },
   {
-    value: 80,
-    text: 'RWD/Bootstrap/Semantic UI/Material UI'
-  },
-  {
     value: 60,
-    text: 'Git'
+    text: 'Git/Heroku/Vercel/Auth0'
   },
   {
     value: 30,

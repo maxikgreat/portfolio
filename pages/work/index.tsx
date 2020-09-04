@@ -1,5 +1,5 @@
 import { useSpring, animated, config, useChain, useSprings, SpringValue } from 'react-spring';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 import { delay } from '@/consts';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
@@ -10,26 +10,28 @@ import WorkModel from '@/models/Work';
 import { IWork } from '@/types/models';
 import { WorkBlock } from '@/components/shared/WorkBlock';
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const { data } = await new WorkModel().getAll();
-//   return {
-//     props: {
-//       works: data
-//     }
-//   }
-// }
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await new WorkModel().getAll();
+  return {
+    props: {
+      works: data
+    }
+  }
+}
 
 interface WorkProps {
   works: IWork[]
 }
 
 export default function Work({ works }: WorkProps) {
-  const { data, loading } = useGetUser();
 
-  const elements = [1,3,3];
+  // TODO remaster useGetUser
+  const { data, loading } = useGetUser(); 
 
   const containerWorkRef = useRef();
   const elementWorkRef = useRef();
+
+  console.log(works);
 
   const containerProps: {
     transform: SpringValue<string>
@@ -44,9 +46,12 @@ export default function Work({ works }: WorkProps) {
     },
   });
 
-  const elementsWork = useSprings(
-    elements.length,
-    elements.map((_, index) => ({
+  const elementsWork: {
+    transform: SpringValue<string>,
+    opacity: SpringValue<number>
+  }[] = useSprings(
+    works.length,
+    works.map((_, index) => ({
       ref: elementWorkRef,
       config: config.slow,
       delay: delay * index,
@@ -62,12 +67,13 @@ export default function Work({ works }: WorkProps) {
 
   useChain([{current: containerWorkRef.current}, elementWorkRef], [0, 1]);
 
+  // TODO remaster useGetUser
   return (
-    <BaseLayout data={data} loading={loading}>
+    <BaseLayout data={null} loading={false}>
       <BasePage title="Helped me to grow">
         <animated.div className="timeline" style={containerProps}>
           {elementsWork.map((props, index) => (
-            <WorkBlock props={props} key={index}/>
+            <WorkBlock work={works[index]} props={props} key={index}/>
           ))}
         </animated.div>
       </BasePage>

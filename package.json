@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "client:dev": "nodemon --watch 'server/**/*.ts' --exec 'ts-node --project tsconfig.server.json' server/index.ts",
-    "client:start": "cross-env NODE_ENV=production ts-node --project tsconfig.server.json server/index.ts",
-    "client:build": "next build",
-    "server:dev": "nodemon --watch 'serverApi/**/*.ts' --exec 'ts-node --project tsconfig.server.json' serverApi/index.ts",
-    "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\""
+    "dev": "cross-env NODE_ENV=development nodemon --watch 'server/**/*.ts' --exec 'ts-node --project tsconfig.server.json' server/index.ts",
+    "start": "cross-env NODE_ENV=production ts-node --project tsconfig.server.json server/index.ts",
+    "build": "next build"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.15.0",
     "@react-spring/parallax": "^9.0.0-rc.3",
     "axios": "^0.19.2",
     "chance": "^1.1.7",
+    "cross-env": "^7.0.2",
     "dotenv-webpack": "^2.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.0",
@@ -34,8 +33,6 @@
     "@types/node": "^14.0.27",
     "@types/react": "^16.9.45",
     "concurrently": "^5.3.0",
-    "cross-env": "^7.0.2",
-    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"

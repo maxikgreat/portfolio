@@ -4,7 +4,10 @@ const DotenvWebpack = require('dotenv-webpack');
 module.exports = {
   webpack: config => {
     config.resolve.alias['@'] = path.resolve(__dirname);
-    config.plugins.push(new DotenvWebpack({ silent: true }));
+    if (process.env.NODE_ENV === 'development') config.plugins.push(new DotenvWebpack({ silent: true }));
     return config;
-  }
+  },
+  devIndicators: {
+    autoPrerender: false,
+  },
 }
