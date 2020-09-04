@@ -26,12 +26,10 @@ interface WorkProps {
 export default function Work({ works }: WorkProps) {
 
   // TODO remaster useGetUser
-  const { data, loading } = useGetUser(); 
+  // const { data, loading } = useGetUser(); 
 
   const containerWorkRef = useRef();
   const elementWorkRef = useRef();
-
-  console.log(works);
 
   const containerProps: {
     transform: SpringValue<string>
@@ -64,8 +62,7 @@ export default function Work({ works }: WorkProps) {
     }))
   );
 
-
-  useChain([{current: containerWorkRef.current}, elementWorkRef], [0, 1]);
+  useChain([containerWorkRef, elementWorkRef], [0, 1]);
 
   // TODO remaster useGetUser
   return (
