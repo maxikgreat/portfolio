@@ -5,7 +5,6 @@ import { IWork } from "@/types/models";
 interface WorkBlockProps {
   props: {
     transform: SpringValue<string>,
-    opacity: SpringValue<number>
   },
   work: IWork,
 }
