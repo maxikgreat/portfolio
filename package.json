@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --watch 'server/**/*.ts' --exec 'ts-node --project tsconfig.server.json' server/index.ts",
-    "start": "cross-env NODE_ENV=production ts-node --project tsconfig.server.json server/index.ts",
-    "build": "next build"
+    "start": "next start",
+    "build": "next build",
+    "postinstall": "node reactSpringFix.js"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.15.0",
@@ -22,6 +23,7 @@
     "react-dom": "16.13.1",
     "react-spring": "^9.0.0-rc.3",
     "react-typed": "^1.2.0",
+    "replace-in-file": "^6.1.0",
     "sass": "^1.26.10",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^1.1.1",
