@@ -18,6 +18,10 @@
   animation: glow 3s infinite;
   animation-timing-function: ease-out;
   position: relative;
+  &-small {
+    padding: 15px;
+    font-size: 2rem;
+  }
 }
 .btn-glow:hover {
   box-shadow: 0 0 0 10px #3daaa200;

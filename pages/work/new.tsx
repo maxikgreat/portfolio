@@ -1,4 +1,4 @@
-import { Input, Grid, TextArea } from 'semantic-ui-react';
+import { Input, Grid, TextArea, Icon } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { useState, ChangeEvent } from 'react';
 
@@ -22,6 +22,12 @@ interface FormState {
   keyPoint: string | '',
 }
 
+// type CustomChangeEvent<T> = 
+//   ChangeEvent<T extends HTMLInputElement 
+//     ? HTMLInputElement
+//     : HTMLTextAreaElement
+//   >;
+
 function WorkNew({ user, loading }: WorkNewProps) {
   const [form, setForm] = useState<FormState>({
     jobPosition: '',
@@ -33,20 +39,19 @@ function WorkNew({ user, loading }: WorkNewProps) {
     keyPoint: '',
   });
 
-  const onChangeHandler = (
-    { target: { value, name }}: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+
+  const onChangeHandler = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
-      [name]: value,
+      [name]: value
     });
-  };
+  }
 
   return (
     <BaseLayout data={user} loading={loading}>
       <BasePage title="New work record" className="new-work-container">
         <Grid columns={2}>
-          <Grid.Row>
+          <Grid.Row className="image-bordered-shadow back-shadow">
             <Grid.Column>
               <Input
                 transparent
@@ -86,12 +91,18 @@ function WorkNew({ user, loading }: WorkNewProps) {
             </Grid.Column>
             <Grid.Column>
               <h2 className="special-text-white">Description points</h2>
+              <Icon name="add" size="huge" className="add-desc-point" />
               <TextArea />
               <h2 className="special-text-white">Key point</h2>
               <TextArea
                 value={form.keyPoint}
+                name="keyPoint"
+                // @ts-ignore works correctly on textarea
                 onChange={onChangeHandler}
               />
+              <button 
+                className="btn-glow btn-glow-small btn-hover-shine"
+              >Add</button>
             </Grid.Column>
           </Grid.Row>
         </Grid>

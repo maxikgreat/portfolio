@@ -81,6 +81,10 @@ h1, h2, h3, h4, h5, h6, button {
   box-shadow: 5px 5px 10px 15px rgba($black, 0.75);
 }
 
+.back-shadow {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .blur {
   filter: blur(10px) grayscale(0.4);
 }

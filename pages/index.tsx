@@ -136,9 +136,6 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="image-section-1 image-bordered-shadow" />
-                    <div className="shadow-custom">
-                      <div className="shadow-inner"> </div>
-                    </div>
                   </animated.div>
                 </Grid.Column>
                 <Grid.Column>
