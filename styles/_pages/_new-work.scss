@@ -1,0 +1,56 @@
+.new-work-container {
+  .ui.two.column.grid {
+    transition: all .2s ease-in-out;
+    margin-top: 0;
+  }
+  .field {
+    width: 100%;
+  }
+  .ui.icon.input.rangepicker {
+    width: 100%;
+    input {
+      font-size: 2rem;
+      padding: 0 !important;
+      background: transparent;
+      border: none;
+    }
+  }
+  .ui.segment.clndr-calendars-segment {
+    background-color: $accent-dark;
+    .clndr-control {
+      color: $primary-light;
+      font-weight: bold;
+      i {
+        color: $primary-light;
+      }
+      button {
+        box-shadow: none;
+        border: 1px solid $primary-light;
+      }
+      button:hover {
+        background-color: $primary-light !important;
+        i {
+          color: $accent-dark;
+        }
+      }
+    }
+    .clndr-days {
+      .clndr-cell {
+        color: $primary-light;
+        background-color: $accent-dark;
+        &-inrange {
+          color: $accent-dark;
+          background-color: $primary-light;
+        }
+        &-selected {
+          color: $accent-dark;
+          background-color: $primary-light;
+        }
+      } 
+    }
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}

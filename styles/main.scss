@@ -6,11 +6,13 @@
 @import './_components/sidebar';
 @import './_components/work-timeline';
 @import './_components/button-glow';
+@import './_components/input';
 
 // pages
 @import './_pages/index.scss';
 @import './_pages/work';
 @import './_pages/cv';
+@import './_pages/new-work';
 
 *::-webkit-scrollbar {
   display: none;

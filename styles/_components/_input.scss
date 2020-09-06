@@ -1,0 +1,34 @@
+.input-container, textarea {
+  transition: all .2s ease-in-out;
+  border-bottom: 5px double $accent-dark;
+  // box-shadow: inset 0px 0px 5px 5px rgba($black, 0.25);
+  padding: 3px;
+  margin-bottom: 1rem;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  color: $white !important;
+  text-shadow: 4px 4px $accent-dark;
+  font-size: 2rem;
+  &:active, &:focus {
+    outline: none;
+  }
+  input {
+    padding: 0 !important;
+    color: $white !important;
+    text-shadow: 4px 4px $accent-dark;
+    font-size: 3rem;
+    width: 80%;
+  }
+  i {
+    font-size: 2rem;
+    color: $primary-light;
+    opacity: 1 !important;
+  }
+}
+
+.ui.transparent.icon.input>input {
+  padding-right: 3rem !important;
+}
