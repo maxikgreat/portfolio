@@ -1,6 +1,7 @@
-import { Input, Grid, TextArea, Icon } from 'semantic-ui-react';
+import { Grid, Icon } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { useState, ChangeEvent, Fragment } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
@@ -13,48 +14,54 @@ interface WorkNewProps {
 }
 
 interface FormState {
-  jobPosition: string | '',
-  company: string | '',
-  companyWebsite: string | '',
-  startDate: Date | null,
-  endDate: Date | null,
-  descriptionPoints: string[] | [],
-  activeDescPoint: '',
-  keyPoint: string | '',
+  jobPosition: string,
+  company: string,
+  companyWebsite: string,
+  activeDescPoint: string,
+  keyPoint: string,
 }
 
-function WorkNew({ user, loading }: WorkNewProps) {
-  const [form, setForm] = useState<FormState>({
-    jobPosition: '',
-    company: '',
-    companyWebsite: '',
-    startDate: null,
-    endDate: null,
-    descriptionPoints: [],
-    activeDescPoint: '',
-    keyPoint: '',
-  });
+interface ManualFormState {
+  descriptionPoints: string[] | [],
+  dateRange: string,
+}
 
+const defaultPlaceholder = '...';
+
+function WorkNew({ user, loading }: WorkNewProps) {
+  const { 
+    register, 
+    handleSubmit, 
+    errors, 
+    getValues, 
+    setValue,
+    watch,
+  } = useForm<FormState>();
+
+  const [manualForm, setManualForm] = useState<ManualFormState>({
+    descriptionPoints: [],
+    dateRange: '',
+  });
 
   const onChangeHandler = (
     { target: { name, value } }: ChangeEvent<HTMLInputElement>
   ): void => {
-    setForm({
-      ...form,
-      [name]: value
-    });
+    // setForm({
+    //   ...form,
+    //   [name]: value
+    // });
   };
 
   const addDescPointHandler = (): void => {
-    setForm({
-      ...form,
-      descriptionPoints: [...form.descriptionPoints, form.activeDescPoint],
-      activeDescPoint: '',
+    setManualForm({
+      ...manualForm,
+      descriptionPoints: [...manualForm.descriptionPoints, getValues('activeDescPoint')],
     });
+    setValue('activeDescPoint', '');
   };
 
   const showDescPoints = (): JSX.Element[] => (
-    form.descriptionPoints as string[]
+    manualForm.descriptionPoints as string[]
   ).map((point, index) => (
     <Fragment key={index}>
       <li key={index}>
@@ -67,83 +74,100 @@ function WorkNew({ user, loading }: WorkNewProps) {
   const removeDescPoint = (
     index: number
   ): void => {
-    const tempPoints = [...form.descriptionPoints];
+    const tempPoints = [...manualForm.descriptionPoints];
     tempPoints.splice(index, 1);
-    setForm({
-      ...form,
+    setManualForm({
+      ...manualForm,
       descriptionPoints: tempPoints,
     });
   };
 
+  // const isError = (field): string => errors[field] && 'error';
+
+  const onSubmit = (data) => console.log('data', data);
+
   return (
     <BaseLayout data={user} loading={loading}>
       <BasePage title="New work record" className="new-work-container">
-        <Grid columns={2}>
+        <Grid columns={2} as="form" onSubmit={handleSubmit(onSubmit)}>
           <Grid.Row className="image-bordered-shadow back-shadow">
             <Grid.Column>
-              <Input
-                transparent
-                icon="code"
-                className="input-container"
-                placeholder="position..."
+              <h2 className="special-text-white">
+                Job position&nbsp;
+                <Icon name="spy" className="special-text" />
+              </h2>
+              <input
+                className={`input-container ${errors.jobPosition && 'error'}`}
+                placeholder={defaultPlaceholder}
                 name="jobPosition"
-                value={form.jobPosition}
-                onChange={onChangeHandler}
+                ref={register({ required: true })}
               />
-              <Input
-                transparent
-                icon="building"
-                className="input-container"
-                placeholder="company..."
+              <h2 className="special-text-white">
+                Company&nbsp;
+                <Icon name="building" className="special-text" />
+              </h2>
+              <input
+                className={`input-container ${errors.company && 'error'}`}
+                placeholder={defaultPlaceholder}
                 name="company"
-                value={form.company}
-                onChange={onChangeHandler}
+                ref={register({ required: true })}
               />
-              <Input
-                transparent
-                icon="cloud"
-                className="input-container"
-                placeholder="company website..."
+              <h2 className="special-text-white">
+                Company website&nbsp;
+                <Icon name="globe" className="special-text" />
+              </h2>
+              <input
+                className={`input-container ${errors.companyWebsite && 'error'}`}
+                placeholder={defaultPlaceholder}
                 name="companyWebsite"
-                value={form.companyWebsite}
-                onChange={onChangeHandler}
+                ref={register({ required: true })}
               />
+              <h2 className="special-text-white">
+                Work range&nbsp;
+                <Icon name="calendar" className="special-text" />
+              </h2>
               <SemanticDatepicker
                 showToday={false}
                 icon={null}
                 clearIcon={null}
                 type="range"
                 format="DD/MM/YYYY"
+                name="dateRange"
+                placeholder={defaultPlaceholder}
                 className="rangepicker input-container"
               />
             </Grid.Column>
             <Grid.Column>
-              <h2 className="special-text-white">Description points</h2>
-              {form.descriptionPoints.length > 0 && 
+              <h2 className="special-text-white">
+                Description points&nbsp;
+                <Icon name="pin" className="special-text" />
+              </h2>
+              {manualForm.descriptionPoints.length > 0 && 
                 <ul className="desc-points-container">{showDescPoints()}</ul>
               }
-              {form.activeDescPoint && <Icon
+              {watch('activeDescPoint') && <Icon
                 name="add" 
                 size="huge" 
                 className="add-desc-point" 
                 onClick={addDescPointHandler}
               />}
-              <TextArea
-                value={form.activeDescPoint}
+              <textarea
+                className={`${errors.activeDescPoint && 'error'}`}
                 name="activeDescPoint"
-                placeholder="..."
-                // @ts-ignore works correctly on textarea
-                onChange={onChangeHandler}
+                placeholder={defaultPlaceholder}
+                ref={register()}
               />
-              <h2 className="special-text-white">Key point</h2>
-              <TextArea
-                value={form.keyPoint}
+              <h2 className="special-text-white">
+                Key point&nbsp;
+                <Icon name="gem" className="special-text" />
+              </h2>
+              <textarea
+                className={`${errors.keyPoint && 'error'}`}
                 name="keyPoint"
-                placeholder="..."
-                // @ts-ignore works correctly on textarea
-                onChange={onChangeHandler}
+                placeholder={defaultPlaceholder}
+                ref={register({ required: true })}
               />
-              <button 
+              <button
                 className="btn-glow btn-glow-small btn-hover-shine"
               >Add</button>
             </Grid.Column>

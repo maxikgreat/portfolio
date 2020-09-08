@@ -1,3 +1,7 @@
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+}
+
 .input-container, textarea {
   transition: all .2s ease-in-out;
   border-bottom: 5px double $accent;
@@ -11,22 +15,15 @@
   width: 100%;
   color: $white !important;
   text-shadow: 4px 4px $accent-dark;
-  font-size: 2rem;
+  font-size: 3rem;
   &:active, &:focus {
     outline: none;
   }
-  input {
-    padding: 0 !important;
-    color: $white !important;
-    text-shadow: 4px 4px $accent-dark;
-    font-size: 3rem;
-    width: 80%;
-  }
-  i {
-    font-size: 2rem;
-    color: $primary-light;
-    opacity: 1 !important;
-  }
+}
+
+input.error, textarea.error {
+  border-bottom: 5px double $red;
+  text-shadow: 4px 4px $red;
 }
 
 .ui.transparent.icon.input>input {
