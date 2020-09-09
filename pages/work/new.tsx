@@ -3,6 +3,7 @@ import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/types';
 import { useState, Fragment, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTransition, animated, config } from 'react-spring';
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
@@ -43,7 +44,28 @@ function WorkNew({ user, loading }: WorkNewProps) {
   const [manualForm, setManualForm] = useState<ManualFormState>({
     descriptionPoints: [],
     dateRange: [],
+  })
+
+
+  // TODO: Fix animation for desc point!!!
+
+  
+  const descPoints = useTransition(manualForm.descriptionPoints, null, {
+    from: { 
+      transform: 'translateX(-100%)',
+      opacity: 0,
+    },
+    enter: { 
+      transform: 'translateX(0)',
+      opacity: 1,
+    },
+    leave: { 
+      transform: 'translateX(200%)',
+      opacity: 0, 
+    },
   });
+
+  descPoints.map(({}) => {});
 
   const addDescPointHandler = (): void => {
     console.log("add");
@@ -54,15 +76,11 @@ function WorkNew({ user, loading }: WorkNewProps) {
     setValue('activeDescPoint', '');
   };
 
-  const showDescPoints = (): JSX.Element[] => (
-    manualForm.descriptionPoints as string[]
-  ).map((point, index) => (
-    <Fragment key={index}>
-      <li key={index}>
-        {point}
-        <Icon name="close" onClick={() => removeDescPoint(index)} className="remove-icon" />
-      </li>
-    </Fragment>
+  const showDescPoints = (): JSX.Element[] => descPoints.length > 0 && descPoints.map(({ item, props }, index) => (
+    <animated.li key={index} style={props}>
+      {item}
+      <Icon name="close" onClick={() => removeDescPoint(index)} className="remove-icon" />
+    </animated.li>
   ));
 
   const removeDescPoint = (
@@ -86,7 +104,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
         dateRange: [...data.value],
       })
     }
-  }
+  };
 
   const isError = (field: keyof FormState): string => errors[field] && 'error';
 
@@ -96,10 +114,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
 
   const onSubmit = (data: FormState) => {
     const { descriptionPoints, dateRange } = manualForm;
-    if (
-      manualForm.descriptionPoints.length > 0 
-      && manualForm.dateRange.length > 0 
-    ) {
+    if (descriptionPoints.length > 0 && dateRange.length > 0 ) {
       console.log("OK");
     }
   }
