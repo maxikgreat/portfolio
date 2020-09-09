@@ -1,6 +1,7 @@
 import { Grid, Icon } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
-import { useState, ChangeEvent, Fragment } from 'react';
+import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/types';
+import { useState, Fragment, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
@@ -23,7 +24,7 @@ interface FormState {
 
 interface ManualFormState {
   descriptionPoints: string[] | [],
-  dateRange: string,
+  dateRange: Date[] | [],
 }
 
 const defaultPlaceholder = '...';
@@ -36,23 +37,16 @@ function WorkNew({ user, loading }: WorkNewProps) {
     getValues, 
     setValue,
     watch,
+    formState,
   } = useForm<FormState>();
 
   const [manualForm, setManualForm] = useState<ManualFormState>({
     descriptionPoints: [],
-    dateRange: '',
+    dateRange: [],
   });
 
-  const onChangeHandler = (
-    { target: { name, value } }: ChangeEvent<HTMLInputElement>
-  ): void => {
-    // setForm({
-    //   ...form,
-    //   [name]: value
-    // });
-  };
-
   const addDescPointHandler = (): void => {
+    console.log("add");
     setManualForm({
       ...manualForm,
       descriptionPoints: [...manualForm.descriptionPoints, getValues('activeDescPoint')],
@@ -82,87 +76,115 @@ function WorkNew({ user, loading }: WorkNewProps) {
     });
   };
 
-  // const isError = (field): string => errors[field] && 'error';
+  const onDatePickerHandler = (
+    _: SyntheticEvent, 
+    data: SemanticDatepickerProps
+  ): void => {
+    if (Array.isArray(data.value) && data.value.length === 2) {
+      setManualForm({
+        ...manualForm,
+        dateRange: [...data.value],
+      })
+    }
+  }
 
-  const onSubmit = (data) => console.log('data', data);
+  const isError = (field: keyof FormState): string => errors[field] && 'error';
+
+  const isArrayEmptyError = (
+    field: keyof ManualFormState
+  ): string => manualForm[field].length === 0 && formState.isSubmitted ? 'error' : '';
+
+  const onSubmit = (data: FormState) => {
+    const { descriptionPoints, dateRange } = manualForm;
+    if (
+      manualForm.descriptionPoints.length > 0 
+      && manualForm.dateRange.length > 0 
+    ) {
+      console.log("OK");
+    }
+  }
 
   return (
     <BaseLayout data={user} loading={loading}>
       <BasePage title="New work record" className="new-work-container">
-        <Grid columns={2} as="form" onSubmit={handleSubmit(onSubmit)}>
+        <Grid columns={2} as="form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <Grid.Row className="image-bordered-shadow back-shadow">
             <Grid.Column>
-              <h2 className="special-text-white">
+              <h2 className={`special-text-white ${isError('jobPosition')}`}>
                 Job position&nbsp;
-                <Icon name="spy" className="special-text" />
+                <Icon name="spy" className={`special-text ${isError('jobPosition')}`} />
               </h2>
               <input
-                className={`input-container ${errors.jobPosition && 'error'}`}
+                className={`input-container ${isError('jobPosition')}`}
                 placeholder={defaultPlaceholder}
                 name="jobPosition"
                 ref={register({ required: true })}
               />
-              <h2 className="special-text-white">
+              <h2 className={`special-text-white ${isError('company')}`}>
                 Company&nbsp;
-                <Icon name="building" className="special-text" />
+                <Icon name="building" className={`special-text ${isError('company')}`} />
               </h2>
               <input
-                className={`input-container ${errors.company && 'error'}`}
+                className={`input-container ${isError('company')}`}
                 placeholder={defaultPlaceholder}
                 name="company"
                 ref={register({ required: true })}
               />
-              <h2 className="special-text-white">
+              <h2 className={`special-text-white ${isError('companyWebsite')}`}>
                 Company website&nbsp;
-                <Icon name="globe" className="special-text" />
+                <Icon name="globe" className={`special-text ${isError('companyWebsite')}`} />
               </h2>
               <input
-                className={`input-container ${errors.companyWebsite && 'error'}`}
+                className={`input-container ${isError('companyWebsite')}`}
                 placeholder={defaultPlaceholder}
                 name="companyWebsite"
                 ref={register({ required: true })}
               />
-              <h2 className="special-text-white">
+              <h2 className={`special-text-white ${isArrayEmptyError('dateRange')}`}>
                 Work range&nbsp;
-                <Icon name="calendar" className="special-text" />
+                <Icon name="calendar" className={`special-text ${isArrayEmptyError('dateRange')}`} />
               </h2>
               <SemanticDatepicker
+                datePickerOnly
                 showToday={false}
                 icon={null}
                 clearIcon={null}
                 type="range"
                 format="DD/MM/YYYY"
                 name="dateRange"
+                onChange={onDatePickerHandler}
                 placeholder={defaultPlaceholder}
-                className="rangepicker input-container"
+                className={`rangepicker input-container ${isArrayEmptyError('dateRange')}`}
               />
             </Grid.Column>
             <Grid.Column>
-              <h2 className="special-text-white">
+              <h2 className={`special-text-white ${isArrayEmptyError('descriptionPoints')}`}>
                 Description points&nbsp;
-                <Icon name="pin" className="special-text" />
+                <Icon name="pin" className={`special-text ${isArrayEmptyError('descriptionPoints')}`} />
               </h2>
               {manualForm.descriptionPoints.length > 0 && 
                 <ul className="desc-points-container">{showDescPoints()}</ul>
               }
-              {watch('activeDescPoint') && <Icon
-                name="add" 
-                size="huge" 
-                className="add-desc-point" 
-                onClick={addDescPointHandler}
-              />}
-              <textarea
-                className={`${errors.activeDescPoint && 'error'}`}
-                name="activeDescPoint"
-                placeholder={defaultPlaceholder}
-                ref={register()}
-              />
-              <h2 className="special-text-white">
+              <div className="textarea-container">
+                <Icon
+                  name="add" 
+                  size="huge" 
+                  className={`add-desc-point ${!watch('activeDescPoint') && 'disabled'}`}
+                  onClick={watch('activeDescPoint') ? addDescPointHandler : null}
+                />
+                <textarea
+                  className={`${isArrayEmptyError('descriptionPoints')}`}
+                  name="activeDescPoint"
+                  placeholder={defaultPlaceholder}
+                  ref={register()}
+                />
+              </div>
+              <h2 className={`special-text-white ${isError('keyPoint')}`}>
                 Key point&nbsp;
-                <Icon name="gem" className="special-text" />
+                <Icon name="gem" className={`special-text ${isError('keyPoint')}`} />
               </h2>
               <textarea
-                className={`${errors.keyPoint && 'error'}`}
+                className={`${isError('keyPoint')}`}
                 name="keyPoint"
                 placeholder={defaultPlaceholder}
                 ref={register({ required: true })}

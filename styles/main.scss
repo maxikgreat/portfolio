@@ -114,10 +114,18 @@ h1, h2, h3, h4, h5, h6, button {
   }
 }
 
+textarea {
+  resize: none;
+}
+
 button:disabled {
   cursor: not-allowed;
   opacity: .75;
   filter: grayscale(0.5);
+}
+
+.disabled {
+  cursor: not-allowed !important;
 }
 
 @import './respo';

@@ -2,7 +2,7 @@ input:-internal-autofill-selected {
   background-color: transparent !important;
 }
 
-.input-container, textarea {
+.input-container, textarea, input[name="dateRange"] {
   transition: all .2s ease-in-out;
   border-bottom: 5px double $accent;
   // box-shadow: inset 0px 0px 5px 5px rgba($black, 0.25);
@@ -15,13 +15,13 @@ input:-internal-autofill-selected {
   width: 100%;
   color: $white !important;
   text-shadow: 4px 4px $accent-dark;
-  font-size: 3rem;
+  font-size: 2rem;
   &:active, &:focus {
     outline: none;
   }
 }
 
-input.error, textarea.error {
+input.error, textarea.error, .rangepicker.error {
   border-bottom: 5px double $red;
   text-shadow: 4px 4px $red;
 }
