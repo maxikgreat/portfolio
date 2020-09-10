@@ -1,7 +1,7 @@
 import { Grid, Icon } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/types';
-import { useState, Fragment, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent, CSSProperties } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTransition, animated, config } from 'react-spring';
 
@@ -45,12 +45,8 @@ function WorkNew({ user, loading }: WorkNewProps) {
     descriptionPoints: [],
     dateRange: [],
   })
-
-
-  // TODO: Fix animation for desc point!!!
-
   
-  const descPoints = useTransition(manualForm.descriptionPoints, null, {
+  const descPoints = useTransition(manualForm.descriptionPoints, {
     from: { 
       transform: 'translateX(-100%)',
       opacity: 0,
@@ -60,12 +56,10 @@ function WorkNew({ user, loading }: WorkNewProps) {
       opacity: 1,
     },
     leave: { 
-      transform: 'translateX(200%)',
       opacity: 0, 
+      textDecoration: 'line-through',
     },
   });
-
-  descPoints.map(({}) => {});
 
   const addDescPointHandler = (): void => {
     console.log("add");
@@ -76,10 +70,11 @@ function WorkNew({ user, loading }: WorkNewProps) {
     setValue('activeDescPoint', '');
   };
 
-  const showDescPoints = (): JSX.Element[] => descPoints.length > 0 && descPoints.map(({ item, props }, index) => (
-    <animated.li key={index} style={props}>
+  const showDescPoints = (): JSX.Element => descPoints((style, item, _, i) => (
+    // @ts-ignore
+    <animated.li key={i} style={style}>
       {item}
-      <Icon name="close" onClick={() => removeDescPoint(index)} className="remove-icon" />
+      <Icon name="close" onClick={() => removeDescPoint(i)} className="remove-icon" />
     </animated.li>
   ));
 
@@ -177,9 +172,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
                 Description points&nbsp;
                 <Icon name="pin" className={`special-text ${isArrayEmptyError('descriptionPoints')}`} />
               </h2>
-              {manualForm.descriptionPoints.length > 0 && 
                 <ul className="desc-points-container">{showDescPoints()}</ul>
-              }
               <div className="textarea-container">
                 <Icon
                   name="add" 
