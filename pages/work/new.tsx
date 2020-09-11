@@ -1,7 +1,7 @@
 import { Grid, Icon } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/types';
-import { useState, SyntheticEvent } from 'react';
+import { useState, useRef, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTransition, animated } from 'react-spring';
 
@@ -31,6 +31,7 @@ interface ManualFormState {
 const defaultPlaceholder = '...';
 
 function WorkNew({ user, loading }: WorkNewProps) {
+  const dateRangePickerRef = useRef();
   const { 
     register, 
     handleSubmit, 
@@ -94,13 +95,29 @@ function WorkNew({ user, loading }: WorkNewProps) {
     _: SyntheticEvent, 
     data: SemanticDatepickerProps
   ): void => {
-    if (Array.isArray(data.value) && data.value.length === 2) {
-      setManualForm({
-        ...manualForm,
-        dateRange: [...data.value],
-      })
+    const workRange = endDate ? [...(data.value as Date[])] : [(data.value as Date[]).shift()];
+    setManualForm({
+      ...manualForm,
+      dateRange: workRange,
+    });
+    if (!endDate && workRange.length === 1) {
+      dateRangePickerRef.current.close();
     }
   };
+
+  const setEndDateHandler = () => {
+    const { dateRange } = manualForm;
+    if (dateRange.length === 2) {
+      setManualForm({
+        ...manualForm,
+        dateRange: [dateRange.shift()],
+      });
+      console.log(dateRangePickerRef.current);
+    }
+    setEndDate(!endDate);
+
+    // TODO DELETE 2 DATE on input value
+  }
 
   const isError = (field: keyof FormState): string => errors[field] && 'error';
 
@@ -158,6 +175,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
               <div className="rangepicker-container">
                 <SemanticDatepicker
                   datePickerOnly
+                  ref={dateRangePickerRef}
                   showToday={false}
                   icon={null}
                   clearIcon={null}
@@ -170,7 +188,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
                 />
                 <span 
                   className={`no-date-switcher special-text${endDate ? '-white' : ' active'}`}
-                  onClick={() => setEndDate(!endDate)}
+                  onClick={setEndDateHandler}
                 >No end date</span>
               </div>
             </Grid.Column>

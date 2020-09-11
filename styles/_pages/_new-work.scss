@@ -104,7 +104,7 @@
   .rangepicker-container {
     display: flex;
     align-items: center;
-    span {
+    > span {
       transition: .2s all ease-in-out;
       margin-left: 15px;
       font-size: 1.5rem;
