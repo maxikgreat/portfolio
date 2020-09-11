@@ -9,22 +9,18 @@
 
   .add-desc-point {
     transition: all .2s ease-in-out;
-    position: absolute;
-    right: 5px;
-    top: 5px;
     cursor: pointer;
     color: $primary-light;
     margin: 0;
+    margin-left: 15px;
     &:hover {
       color: $accent;
     }
   }
 
   .textarea-container {
-    position: relative;
-    textarea {
-      width: 80%;
-    }
+    display: flex;
+    align-items: center;
   }
 
   textarea {
@@ -102,6 +98,22 @@
     color: $primary-light;
     &:hover {
       color: $accent;
+    }
+  }
+
+  .rangepicker-container {
+    display: flex;
+    align-items: center;
+    span {
+      transition: .2s all ease-in-out;
+      margin-left: 15px;
+      font-size: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      opacity: .5;
+      &.active {
+        opacity: 1;
+      }
     }
   }
 }

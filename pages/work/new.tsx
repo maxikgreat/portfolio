@@ -1,9 +1,9 @@
 import { Grid, Icon } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/types';
-import { useState, SyntheticEvent, CSSProperties } from 'react';
+import { useState, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTransition, animated, config } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
@@ -44,7 +44,9 @@ function WorkNew({ user, loading }: WorkNewProps) {
   const [manualForm, setManualForm] = useState<ManualFormState>({
     descriptionPoints: [],
     dateRange: [],
-  })
+  });
+
+  const [endDate, setEndDate] = useState<boolean>(true);
   
   const descPoints = useTransition(manualForm.descriptionPoints, {
     from: { 
@@ -62,7 +64,6 @@ function WorkNew({ user, loading }: WorkNewProps) {
   });
 
   const addDescPointHandler = (): void => {
-    console.log("add");
     setManualForm({
       ...manualForm,
       descriptionPoints: [...manualForm.descriptionPoints, getValues('activeDescPoint')],
@@ -154,18 +155,24 @@ function WorkNew({ user, loading }: WorkNewProps) {
                 Work range&nbsp;
                 <Icon name="calendar" className={`special-text ${isArrayEmptyError('dateRange')}`} />
               </h2>
-              <SemanticDatepicker
-                datePickerOnly
-                showToday={false}
-                icon={null}
-                clearIcon={null}
-                type="range"
-                format="DD/MM/YYYY"
-                name="dateRange"
-                onChange={onDatePickerHandler}
-                placeholder={defaultPlaceholder}
-                className={`rangepicker input-container ${isArrayEmptyError('dateRange')}`}
-              />
+              <div className="rangepicker-container">
+                <SemanticDatepicker
+                  datePickerOnly
+                  showToday={false}
+                  icon={null}
+                  clearIcon={null}
+                  type="range"
+                  format="DD/MM/YYYY"
+                  name="dateRange"
+                  onChange={onDatePickerHandler}
+                  placeholder={defaultPlaceholder}
+                  className={`rangepicker input-container ${isArrayEmptyError('dateRange')}`}
+                />
+                <span 
+                  className={`no-date-switcher special-text${endDate ? '-white' : ' active'}`}
+                  onClick={() => setEndDate(!endDate)}
+                >No end date</span>
+              </div>
             </Grid.Column>
             <Grid.Column>
               <h2 className={`special-text-white ${isArrayEmptyError('descriptionPoints')}`}>
@@ -174,17 +181,17 @@ function WorkNew({ user, loading }: WorkNewProps) {
               </h2>
                 <ul className="desc-points-container">{showDescPoints()}</ul>
               <div className="textarea-container">
-                <Icon
-                  name="add" 
-                  size="huge" 
-                  className={`add-desc-point ${!watch('activeDescPoint') && 'disabled'}`}
-                  onClick={watch('activeDescPoint') ? addDescPointHandler : null}
-                />
                 <textarea
                   className={`${isArrayEmptyError('descriptionPoints')}`}
                   name="activeDescPoint"
                   placeholder={defaultPlaceholder}
                   ref={register()}
+                />
+                <Icon
+                  name="add" 
+                  size="huge" 
+                  className={`add-desc-point ${!watch('activeDescPoint') && 'disabled'}`}
+                  onClick={watch('activeDescPoint') ? addDescPointHandler : null}
                 />
               </div>
               <h2 className={`special-text-white ${isError('keyPoint')}`}>
