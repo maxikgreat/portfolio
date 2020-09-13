@@ -6,11 +6,13 @@
 @import './_components/sidebar';
 @import './_components/work-timeline';
 @import './_components/button-glow';
+@import './_components/input';
 
 // pages
 @import './_pages/index.scss';
 @import './_pages/work';
 @import './_pages/cv';
+@import './_pages/new-work';
 
 *::-webkit-scrollbar {
   display: none;
@@ -79,6 +81,10 @@ h1, h2, h3, h4, h5, h6, button {
   box-shadow: 5px 5px 10px 15px rgba($black, 0.75);
 }
 
+.back-shadow {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .blur {
   filter: blur(10px) grayscale(0.4);
 }
@@ -106,6 +112,20 @@ h1, h2, h3, h4, h5, h6, button {
       filter: invert(72%) sepia(78%) saturate(2788%) hue-rotate(336deg) brightness(103%) contrast(88%);
     }
   }
+}
+
+textarea {
+  resize: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .75;
+  filter: grayscale(0.5);
+}
+
+.disabled {
+  cursor: not-allowed !important;
 }
 
 @import './respo';

@@ -14,6 +14,9 @@ export const WorkBlock = ({ props, work }: WorkBlockProps) => {
   const normalizeWithZero = (value: number): string => value / 10 >= 1 ? `${value}` : `0${value}`;
 
   const calculateDate = (stringDate: string): string => {
+    if (!stringDate) { // enddate is undefined
+      return 'still works here';
+    }
     const day = normalizeWithZero(new Date(stringDate).getDate());
     const month = normalizeWithZero(new Date(stringDate).getMonth() + 1);
     const year = new Date(stringDate).getFullYear();

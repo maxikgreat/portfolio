@@ -57,6 +57,11 @@
   .cd-timeline-data {
     font-size: 1.5rem;
   }
+  .new-work-container {
+    i.huge.icon.add-desc-point {
+      font-size: 3rem;
+    }
+  }
   
 }
 
@@ -150,6 +155,15 @@
 
   .progress-container {
     margin-bottom: 10px;
+  }
+
+  .new-work-container {
+    h2 {
+      font-size: 2rem;
+    }
+    input, textarea, input[name="dateRange"] {
+      font-size: 1.5rem !important;
+    }
   }
 }
 
@@ -284,5 +298,31 @@
     top: -7px;
     left: 57px;
     z-index: 10;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .new-work-container {
+    .ui.segment.clndr-calendars-segment {
+      width: 254px;
+      overflow: hidden;
+    }
+    .rangepicker-container {
+      align-items: flex-start;
+      .no-date-switcher {
+        font-size: 1rem;
+      }
+      .clndr-control {
+        div[style="text-align: end;"] {
+          position: absolute;
+          left: 164px;
+          // display: block;
+        }
+      }
+    } 
+  } 
+
+  .new-work-container i.huge.icon.add-desc-point {
+    font-size: 2.5rem;
   }
 }

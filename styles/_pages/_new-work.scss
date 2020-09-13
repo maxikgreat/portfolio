@@ -1,0 +1,119 @@
+.new-work-container {
+  .ui.two.column.grid {
+    transition: all .2s ease-in-out;
+    margin-top: 0;
+  }
+  .field {
+    width: 100%;
+  }
+
+  .add-desc-point {
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    color: $primary-light;
+    margin: 0;
+    margin-left: 15px;
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  .textarea-container {
+    display: flex;
+    align-items: center;
+  }
+
+  textarea {
+    font-size: 1.5rem;
+  }
+
+  .ui.icon.input.rangepicker {
+    width: 100%;
+    input {
+      font-size: 2rem;
+      padding: 0 !important;
+      background: transparent;
+      border: none;
+    }
+  }
+  .ui.segment.clndr-calendars-segment {
+    background-color: $accent-dark;
+    .clndr-control {
+      color: $primary-light;
+      font-weight: bold;
+      i {
+        color: $primary-light;
+      }
+      button {
+        box-shadow: none;
+        border: 1px solid $primary-light;
+      }
+      button:hover {
+        background-color: $primary-light !important;
+        i {
+          color: $accent-dark;
+        }
+      }
+    }
+    .clndr-days {
+      .clndr-cell {
+        color: $primary-light;
+        background-color: $accent-dark;
+        &-inrange {
+          color: $accent-dark;
+          background-color: $primary-light;
+        }
+        &-selected {
+          color: $accent-dark;
+          background-color: $primary-light;
+        }
+      } 
+    }
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+
+  h2.error {
+    text-shadow: 4px 4px $red;
+  }
+
+  i.error {
+    text-shadow: 4px 4px $red;
+  }
+
+  .desc-points-container {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 0;
+    color: $white;
+  }
+
+  .remove-icon {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    margin-left: 5px;
+    color: $primary-light;
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  .rangepicker-container {
+    display: flex;
+    align-items: center;
+    > span {
+      transition: .2s all ease-in-out;
+      margin-left: 15px;
+      font-size: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      opacity: .5;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}

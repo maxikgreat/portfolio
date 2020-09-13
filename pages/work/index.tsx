@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await new WorkModel().getAll();
   return {
     props: {
-      works: data
+      works: data.reverse()
     }
   }
 }
@@ -24,7 +24,6 @@ interface WorkProps {
 }
 
 export default function Work({ works }: WorkProps) {
-
   // TODO remaster useGetUser
   // const { data, loading } = useGetUser(); 
 
