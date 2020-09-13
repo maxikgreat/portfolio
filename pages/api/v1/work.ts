@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse, PageConfig } from 'next';
 import Work from '@/models/Work';
 
-export const config: PageConfig = {
-  api: {
-    bodyParser: process.env.NODE_ENV === 'development' && false,
-  },
-};
+// export const config: PageConfig = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
