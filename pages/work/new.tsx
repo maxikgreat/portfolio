@@ -4,11 +4,14 @@ import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/type
 import { useState, useRef, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTransition, animated } from 'react-spring';
+import Router from 'next/router';
 
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { withAuth } from '@/components/hoc/withAuth';
 import { Role, User } from '@/types/auth0';
+import { createWork } from '@/actions/work';
+import { IWorkPrepared } from '@/types/models';
 
 interface WorkNewProps {
   user: User,
@@ -17,6 +20,7 @@ interface WorkNewProps {
 
 interface FormState {
   jobPosition: string,
+  location: string,
   company: string,
   companyWebsite: string,
   activeDescPoint: string,
@@ -26,10 +30,6 @@ interface FormState {
 interface ManualFormState {
   descriptionPoints: string[] | [],
   dateRange: Date[] | [],
-}
-
-interface IDateRangePickerRef {
-  close: () => void,
 }
 
 const defaultPlaceholder = '...';
@@ -118,6 +118,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
       dateRange: [],
     });
     setEndDate(!endDate);
+    // @ts-ignore event may be optional
     dateRangePickerRef.current.clearInput();
   }
 
@@ -127,10 +128,22 @@ function WorkNew({ user, loading }: WorkNewProps) {
     field: keyof ManualFormState
   ): string => manualForm[field].length === 0 && formState.isSubmitted ? 'error' : '';
 
-  const onSubmit = (data: FormState) => {
+  const onSubmit = ({ keyPoint, company, companyWebsite, location, jobPosition }: FormState) => {
     const { descriptionPoints, dateRange } = manualForm;
     if (descriptionPoints.length > 0 && dateRange.length > 0 ) {
-      console.log("OK");
+      const dataPrepared: IWorkPrepared = {
+        company,
+        companyWebsite,
+        location,
+        jobPosition,
+        descriptionPoints,
+        keyPoint,
+        startDate: dateRange[0].toISOString(),
+        endDate: dateRange[1]?.toISOString(),
+      };
+      createWork(dataPrepared).then((response) => {
+        if (response.status === 200) Router.push('/');
+      });
     }
   }
 
@@ -148,6 +161,16 @@ function WorkNew({ user, loading }: WorkNewProps) {
                 className={`input-container ${isError('jobPosition')}`}
                 placeholder={defaultPlaceholder}
                 name="jobPosition"
+                ref={register({ required: true })}
+              />
+              <h2 className={`special-text-white ${isError('location')}`}>
+                Location&nbsp;
+                <Icon name="location arrow" className={`special-text ${isError('location')}`} />
+              </h2>
+              <input
+                className={`input-container ${isError('location')}`}
+                placeholder={defaultPlaceholder}
+                name="location"
                 ref={register({ required: true })}
               />
               <h2 className={`special-text-white ${isError('company')}`}>
@@ -187,6 +210,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
                   onChange={onDatePickerHandler}
                   placeholder={defaultPlaceholder}
                   className={`rangepicker input-container ${isArrayEmptyError('dateRange')}`}
+                  
                 />
                 <span 
                   className={`no-date-switcher special-text${endDate ? '-white' : ' active'}`}
