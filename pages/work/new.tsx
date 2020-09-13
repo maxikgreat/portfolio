@@ -28,10 +28,14 @@ interface ManualFormState {
   dateRange: Date[] | [],
 }
 
+interface IDateRangePickerRef {
+  close: () => void,
+}
+
 const defaultPlaceholder = '...';
 
 function WorkNew({ user, loading }: WorkNewProps) {
-  const dateRangePickerRef = useRef();
+  const dateRangePickerRef = useRef<SemanticDatepicker>();
   const { 
     register, 
     handleSubmit, 
@@ -95,28 +99,26 @@ function WorkNew({ user, loading }: WorkNewProps) {
     _: SyntheticEvent, 
     data: SemanticDatepickerProps
   ): void => {
+    if (!Array.isArray(data.value)) {
+      return;
+    }
     const workRange = endDate ? [...(data.value as Date[])] : [(data.value as Date[]).shift()];
     setManualForm({
       ...manualForm,
       dateRange: workRange,
     });
     if (!endDate && workRange.length === 1) {
-      dateRangePickerRef.current.close();
+      dateRangePickerRef.current.close(_);
     }
   };
 
   const setEndDateHandler = () => {
-    const { dateRange } = manualForm;
-    if (dateRange.length === 2) {
-      setManualForm({
-        ...manualForm,
-        dateRange: [dateRange.shift()],
-      });
-      console.log(dateRangePickerRef.current);
-    }
+    setManualForm({
+      ...manualForm,
+      dateRange: [],
+    });
     setEndDate(!endDate);
-
-    // TODO DELETE 2 DATE on input value
+    dateRangePickerRef.current.clearInput();
   }
 
   const isError = (field: keyof FormState): string => errors[field] && 'error';

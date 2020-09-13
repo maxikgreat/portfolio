@@ -299,4 +299,28 @@
     left: 57px;
     z-index: 10;
   }
+
+  .new-work-container {
+    .ui.segment.clndr-calendars-segment {
+      width: 254px;
+      overflow: hidden;
+    }
+    .rangepicker-container {
+      align-items: flex-start;
+      .no-date-switcher {
+        font-size: 1rem;
+      }
+      .clndr-control {
+        div[style="text-align: end;"] {
+          position: absolute;
+          left: 164px;
+          // display: block;
+        }
+      }
+    } 
+  } 
+
+  .new-work-container i.huge.icon.add-desc-point {
+    font-size: 2.5rem;
+  }
 }
