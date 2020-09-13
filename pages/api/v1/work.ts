@@ -3,7 +3,7 @@ import Work from '@/models/Work';
 
 export const config: PageConfig = {
   api: {
-    bodyParser: false,
+    bodyParser: process.env.NODE_ENV === 'development' && false,
   },
 };
 
