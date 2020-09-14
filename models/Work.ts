@@ -3,7 +3,7 @@ import axios, { AxiosPromise } from 'axios';
 import { IWork, IWorkPrepared } from '@/types/models';
 
 interface IConfig {
-  headers: {
+  headers?: {
     Authorization?: string,
   }
 }
@@ -11,7 +11,7 @@ interface IConfig {
 // TODO BASIC MODEL WITH BASE URL AND SIMILAR
 class Work {
   private config: IConfig;
-  constructor(accessToken: string) {
+  constructor(accessToken?: string) {
     if (accessToken) {
       this.config.headers = {
         Authorization: `Bearer ${accessToken}`
