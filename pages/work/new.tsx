@@ -1,4 +1,4 @@
-import { Grid, Icon, Button } from 'semantic-ui-react';
+import { Grid, Icon, Button, Message } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/types';
 import { useState, useRef, SyntheticEvent } from 'react';
@@ -258,7 +258,11 @@ function WorkNew({ user, loading }: WorkNewProps) {
                   disabled={workState.loading}
                   className="rewrited"
                 >Add</Button>
-                {workState.error && <span>{workState.error}</span>}
+                {workState.error && 
+                <Message negative>
+                  <Message.Header>{workState.error}</Message.Header>
+                </Message>
+                }
               </div>
             </Grid.Column>
           </Grid.Row>

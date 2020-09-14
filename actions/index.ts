@@ -21,7 +21,7 @@ export function useApiHandler<T, K>(apiCall: (data?: T) => AxiosPromise<K>): [
         error: (response && response.data) || 'Ooops, something went wrong!',
         loading: false,
         data: null,
-      })
+      });
     }
   }
   return [handler, {...requestState}];
