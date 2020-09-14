@@ -1,4 +1,4 @@
-import axios, { AxiosPromise } from 'axios';
+import { AxiosPromise } from 'axios';
 import { useState } from 'react';
 
 export function useApiHandler<T, K>(apiCall: (data?: T) => AxiosPromise<K>): [
@@ -12,13 +12,13 @@ export function useApiHandler<T, K>(apiCall: (data?: T) => AxiosPromise<K>): [
   });
 
   const handler = async (data?: T) => {
-    setRequestState({ error: '', loading: false, data: null });
+    setRequestState({ error: '', loading: true, data: null });
     try {
       const response = await apiCall(data);
       setRequestState({ error: '', loading: false, data: response.data });
-    } catch (e) {
+    } catch ({ response }) {
       setRequestState({
-        error: (e.response && e.response) || 'Ooops, something went wrong!',
+        error: (response && response.data) || 'Ooops, something went wrong!',
         loading: false,
         data: null,
       })
