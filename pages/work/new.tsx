@@ -1,17 +1,17 @@
-import { Grid, Icon } from 'semantic-ui-react';
+import { Grid, Icon, Button, Message } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import { SemanticDatepickerProps } from 'react-semantic-ui-datepickers/dist/types';
 import { useState, useRef, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTransition, animated } from 'react-spring';
-import Router from 'next/router';
 
+import { Redirect } from '@/components/shared/Redirect';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { withAuth } from '@/components/hoc/withAuth';
 import { Role, User } from '@/types/auth0';
-import { createWork } from '@/actions/work';
 import { IWorkPrepared } from '@/types/models';
+import { useCreateWork } from '@/actions/work';
 
 interface WorkNewProps {
   user: User,
@@ -35,6 +35,8 @@ interface ManualFormState {
 const defaultPlaceholder = '...';
 
 function WorkNew({ user, loading }: WorkNewProps) {
+  const [createWork, workState] = useCreateWork();
+
   const dateRangePickerRef = useRef<SemanticDatepicker>();
   const { 
     register, 
@@ -141,11 +143,11 @@ function WorkNew({ user, loading }: WorkNewProps) {
         startDate: dateRange[0].toISOString(),
         endDate: dateRange[1]?.toISOString(),
       };
-      createWork(dataPrepared).then((response) => {
-        if (response.status === 200) Router.push('/');
-      });
+      createWork(dataPrepared);
     }
   }
+
+  if (workState.data) return <Redirect to="/work" ssr={false} />
 
   return (
     <BaseLayout data={user} loading={loading}>
@@ -210,7 +212,6 @@ function WorkNew({ user, loading }: WorkNewProps) {
                   onChange={onDatePickerHandler}
                   placeholder={defaultPlaceholder}
                   className={`rangepicker input-container ${isArrayEmptyError('dateRange')}`}
-                  
                 />
                 <span 
                   className={`no-date-switcher special-text${endDate ? '-white' : ' active'}`}
@@ -248,13 +249,24 @@ function WorkNew({ user, loading }: WorkNewProps) {
                 placeholder={defaultPlaceholder}
                 ref={register({ required: true })}
               />
-              <button
-                className="btn-glow btn-glow-small btn-hover-shine"
-              >Add</button>
+              <div>
+                <Button
+                  basic
+                  fluid
+                  size="huge"
+                  loading={workState.loading}
+                  disabled={workState.loading}
+                  className="rewrited"
+                >Add</Button>
+                {workState.error && 
+                <Message negative>
+                  <Message.Header>{workState.error}</Message.Header>
+                </Message>
+                }
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        
       </BasePage>
     </BaseLayout>
   )

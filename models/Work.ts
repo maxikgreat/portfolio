@@ -2,18 +2,12 @@ import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { IWork, IWorkPrepared } from '@/types/models';
 
-// interface IConfig {
-//   headers?: {
-//     Authorization?: string,
-//   }
-// }
-
 // TODO BASIC MODEL WITH BASE URL AND SIMILAR
 class Work {
   private config: AxiosRequestConfig = {
-    ...axios.defaults.headers,
+    headers: { ...axios.defaults.headers },
   };
-  
+
   constructor(accessToken?: string) {
     if (accessToken) {
       this.config.headers = {

@@ -9,8 +9,5 @@ export const useGetUser = () => {
   const { data, error, ...rest } = useSWR<User>('/api/v1/me', fetcher, {
     revalidateOnFocus: true
   });
-  if (error) {
-    return { data: null, loading: false };
-  }
   return { data, error, loading: !data && !error, ...rest };
 };

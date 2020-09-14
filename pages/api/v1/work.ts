@@ -16,6 +16,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const response = await new Work(accessToken).createNew(req.body);
     return res.json(response.data);
   } catch (e) {
-    return res.status(e.status || 400).end(e.message);
+    return res.status(e.status || 422).json(e.response.data);
   }
 }
