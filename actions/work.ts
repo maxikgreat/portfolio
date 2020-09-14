@@ -1,3 +1,8 @@
 import axios from 'axios';
 
-export const createWork = (data) => axios.post('/api/v1/work', data);
+import { useApiHandler } from './';
+import { IWorkPrepared, IWork } from '@/types/models';
+
+const createWork = (data: IWorkPrepared) => axios.post('/api/v1/work', data);
+
+export const useCreateWork = () => useApiHandler<IWorkPrepared, IWork>(createWork);

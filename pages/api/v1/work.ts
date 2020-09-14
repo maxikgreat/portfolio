@@ -4,11 +4,11 @@ import auth0 from '@/utils/auth0';
 import Work from '@/models/Work';
 
 // bodyParser needs to be disabled on vercel
-// export const config: PageConfig = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };
+export const config: PageConfig = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {

@@ -10,8 +10,8 @@ import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { withAuth } from '@/components/hoc/withAuth';
 import { Role, User } from '@/types/auth0';
-import { createWork } from '@/actions/work';
 import { IWorkPrepared } from '@/types/models';
+import { useCreateWork } from '@/actions/work';
 
 interface WorkNewProps {
   user: User,
@@ -35,6 +35,8 @@ interface ManualFormState {
 const defaultPlaceholder = '...';
 
 function WorkNew({ user, loading }: WorkNewProps) {
+  const [createWork, workState] = useCreateWork();
+
   const dateRangePickerRef = useRef<SemanticDatepicker>();
   const { 
     register, 
@@ -141,9 +143,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
         startDate: dateRange[0].toISOString(),
         endDate: dateRange[1]?.toISOString(),
       };
-      createWork(dataPrepared).then((response) => {
-        if (response.status === 200) Router.push('/');
-      });
+      createWork(dataPrepared);
     }
   }
 
