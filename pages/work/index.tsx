@@ -9,23 +9,43 @@ import { GetServerSideProps } from 'next';
 import WorkModel from '@/models/Work';
 import { IWork } from '@/types/models';
 import { WorkBlock } from '@/components/shared/WorkBlock';
+import { ErrorPage } from '@/components/shared/ErrorPage';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await new WorkModel().getAll();
-  return {
-    props: {
-      works: data.reverse()
+  try {
+    const { data } = await new WorkModel().getAll();
+    return {
+      props: {
+        works: data.reverse(),
+      }
+    }
+  } catch (e) {
+    console.log('error in server side props', e);
+    return {
+      props: {
+        works: null,
+        error: (e.response && e.response.data) || 'Internal server error',
+      }
     }
   }
 }
 
 interface WorkProps {
-  works: IWork[]
+  works: IWork[] | null,
+  error?: string,
 }
 
-export default function Work({ works }: WorkProps) {
+export default function Work({ works, error }: WorkProps) {
   // TODO remaster useGetUser
   // const { data, loading } = useGetUser(); 
+
+  if (!works || error) {
+    return (
+      <BaseLayout data={null} loading={false} title="Work" className="error">
+        <ErrorPage message={error} />
+      </BaseLayout>
+    );
+  }
 
   const containerWorkRef = useRef();
   const elementWorkRef = useRef();

@@ -1,0 +1,13 @@
+main.error {
+  background: $black;
+  background-image: url('/assets/images/error-image.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 3rem;
+  height: 100vh;
+  background-size: 100%;
+  section {
+    margin-top: 0 !important;
+  }
+}
