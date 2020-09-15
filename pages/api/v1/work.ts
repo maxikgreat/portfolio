@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse, PageConfig } from 'next';
 import auth0 from '@/utils/auth0';
 import Work from '@/models/Work';
 
-// bodyParser needs to be disabled on vercel
+// bodyParser needs to be enabled on vercel
 // export const config: PageConfig = {
 //   api: {
 //     bodyParser: false,
