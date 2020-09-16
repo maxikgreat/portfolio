@@ -19,6 +19,9 @@ class Work {
   public getAll(): AxiosPromise<IWork[]> {
     return axios.get(`${process.env.API_URL}/works`);
   }
+  public getById(id: string): AxiosPromise<IWork> {
+    return axios.get(`${process.env.API_URL}/works/${id}`);
+  }
   public createNew(data: IWorkPrepared): AxiosPromise<string> {
     return axios.post(`${process.env.API_URL}/works/new`, data, this.config);
   }

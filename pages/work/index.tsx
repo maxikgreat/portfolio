@@ -11,6 +11,11 @@ import { IWork } from '@/types/models';
 import { WorkBlock } from '@/components/shared/WorkBlock';
 import { ErrorPage } from '@/components/shared/ErrorPage';
 
+interface WorkProps {
+  works: IWork[] | null,
+  error?: string,
+}
+
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const { data } = await new WorkModel().getAll();
@@ -20,7 +25,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }
     }
   } catch (e) {
-    console.log('error in server side props', e);
     return {
       props: {
         works: null,
@@ -28,11 +32,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }
     }
   }
-}
-
-interface WorkProps {
-  works: IWork[] | null,
-  error?: string,
 }
 
 export default function Work({ works, error }: WorkProps) {
