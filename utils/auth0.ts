@@ -24,8 +24,8 @@ const auth0 = initAuth0({
 export const rolePassed = (user: User, role: Role) => user["https://portfolio-max.com/roles"].includes(role); 
 
 export function withAuth<T>(
-  callback?: ({ req, res }: NextReqRes, ...rest: any[]) => Promise<T>,
   role = Role.guest,
+  callback?: ({ req, res }: NextReqRes, ...rest: any[]) => Promise<T>,
 ) {
   return async ({req, res}: NextReqRes) => {
     // try {
