@@ -8,7 +8,7 @@ interface SecretSsrProps {
   user: User | null,
 }
 
-export const getServerSideProps = withAuth(null, Role.admin);
+export const getServerSideProps = withAuth(Role.admin);
 
 export default function SecretSsr ({ user }: SecretSsrProps) {
   if (!user) {
