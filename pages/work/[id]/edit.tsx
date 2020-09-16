@@ -7,6 +7,7 @@ import { withAuth } from '@/components/hoc/withAuth';
 import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { ErrorPage } from '@/components/shared/ErrorPage';
+import { WorkForm } from '@/components/shared/WorkForm';
 
 interface WorkEditProps {
   user: User,
@@ -23,18 +24,19 @@ interface ContextWithId extends NextPageContext {
 
 export const getServerSideProps = async ({ query: { id }}: ContextWithId) => {
   try {
-    const work = await new Work().getById(id);
-    return { props: { work } };
+    const { data } = await new Work().getById(id);
+    return { props: { work: data } };
   } catch (e) {
-    return { props: { 
-      work: null, 
-      error: (e.response && e.response.data) || 'Internal server error',
-    }};
+    return { 
+      props: { 
+        work: null, 
+        error: (e.response && e.response.data) || 'Internal server error',
+      }
+    };
   }
 };
 
 function WorkEdit({ user, loading, work, error }: WorkEditProps) {
-
   if (!work || error) {
     return (
       <BaseLayout data={null} loading={false} title="Edit work" className="error">
@@ -43,10 +45,17 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
     ) 
   }
 
+  const onSubmit = () => console.log('hello');
+
   return (
     <BaseLayout data={user} loading={loading}>
-      <BasePage title="Edit work">
-        
+      <BasePage title="Edit work" className="work-form-container">
+        <WorkForm
+          error=""
+          loading={false}
+          onSubmitAction={onSubmit}
+          initialData={work}
+        />
       </BasePage>
     </BaseLayout>
   );

@@ -18,7 +18,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
 
   return (
     <BaseLayout data={user} loading={loading}>
-      <BasePage title="New work" className="new-work-container">
+      <BasePage title="New work" className="work-form-container">
         <WorkForm
           onSubmitAction={createWork}
           error={workState.error}
