@@ -24,13 +24,14 @@ interface ManualFormState {
 }
 
 interface WorkFormProps {
-  onSubmitAction: (data?:any, id?: string) => Promise<void>,
+  onSubmitAction: (data: any, id?: string) => Promise<void>,
+  onSubmitText: string,
   error: string,
   loading: boolean,
   initialData?: IWork
 }
 
-export const WorkForm = ({ onSubmitAction, error, loading, initialData }: WorkFormProps) => {
+export const WorkForm = ({ onSubmitAction, onSubmitText, error, loading, initialData }: WorkFormProps) => {
   const dateRangePickerRef = useRef<SemanticDatepicker>();
 
   const { 
@@ -155,6 +156,9 @@ export const WorkForm = ({ onSubmitAction, error, loading, initialData }: WorkFo
         startDate: dateRange[0].toISOString(),
         endDate: dateRange[1]?.toISOString(),
       };
+      if (initialData) {
+        return onSubmitAction({ ...initialData, ...dataPrepared }, initialData._id);
+      }
       onSubmitAction(dataPrepared);
     }
   }
@@ -271,11 +275,11 @@ export const WorkForm = ({ onSubmitAction, error, loading, initialData }: WorkFo
               loading={loading}
               disabled={loading}
               className="rewrited"
-            >Add</Button>
+            >{onSubmitText}</Button>
             {error && 
-            <Message negative>
-              <Message.Header>{error}</Message.Header>
-            </Message>
+              <Message negative>
+                <Message.Header>{error}</Message.Header>
+              </Message>
             }
           </div>
         </Grid.Column>

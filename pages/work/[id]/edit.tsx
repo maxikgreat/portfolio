@@ -8,6 +8,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { ErrorPage } from '@/components/shared/ErrorPage';
 import { WorkForm } from '@/components/shared/WorkForm';
+import { Redirect } from '@/components/shared/Redirect';
 import { useUpdateWork } from '@/actions/work';
 
 interface WorkEditProps {
@@ -49,6 +50,8 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
     ) 
   }
 
+  if (workState.data) return <Redirect to="/work" ssr={false} />
+
   return (
     <BaseLayout data={user} loading={loading}>
       <BasePage title="Edit work" className="work-form-container">
@@ -56,6 +59,7 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
           error={workState.error}
           loading={workState.loading}
           onSubmitAction={updateWork}
+          onSubmitText="Update"
           initialData={work}
         />
       </BasePage>

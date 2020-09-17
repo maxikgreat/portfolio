@@ -11,13 +11,15 @@ export const config: PageConfig = {
 };
 
 interface NextApiRequestWithId extends NextApiRequest {
-  id: string,
+  query: {
+    id: string,
+  }
 }
 
 export default async (req: NextApiRequestWithId, res: NextApiResponse) => {
   try {
     const { accessToken } = await auth0.getSession(req);
-    const { id, body } = req;
+    const { body, query: { id } } = req;
     const { data } = await new Work(accessToken).update(id, body);
     return res.json(data);
   } catch (e) {

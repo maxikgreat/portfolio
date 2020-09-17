@@ -21,6 +21,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
       <BasePage title="New work" className="work-form-container">
         <WorkForm
           onSubmitAction={createWork}
+          onSubmitText="Add"
           error={workState.error}
           loading={workState.loading}
         />
