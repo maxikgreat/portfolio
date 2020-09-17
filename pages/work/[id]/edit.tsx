@@ -8,6 +8,7 @@ import { BaseLayout } from '@/components/layouts/BaseLayout';
 import { BasePage } from '@/components/shared/BasePage';
 import { ErrorPage } from '@/components/shared/ErrorPage';
 import { WorkForm } from '@/components/shared/WorkForm';
+import { useUpdateWork } from '@/actions/work';
 
 interface WorkEditProps {
   user: User,
@@ -37,6 +38,9 @@ export const getServerSideProps = async ({ query: { id }}: ContextWithId) => {
 };
 
 function WorkEdit({ user, loading, work, error }: WorkEditProps) {
+
+  const [updateWork, workState] = useUpdateWork();
+
   if (!work || error) {
     return (
       <BaseLayout data={null} loading={false} title="Edit work" className="error">
@@ -45,15 +49,13 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
     ) 
   }
 
-  const onSubmit = () => console.log('hello');
-
   return (
     <BaseLayout data={user} loading={loading}>
       <BasePage title="Edit work" className="work-form-container">
         <WorkForm
-          error=""
-          loading={false}
-          onSubmitAction={onSubmit}
+          error={workState.error}
+          loading={workState.loading}
+          onSubmitAction={updateWork}
           initialData={work}
         />
       </BasePage>

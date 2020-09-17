@@ -2,11 +2,11 @@ import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { IWork, IWorkPrepared } from '@/types/models';
 
-// TODO BASIC MODEL WITH BASE URL AND SIMILAR
 class Work {
   private config: AxiosRequestConfig = {
     headers: { ...axios.defaults.headers },
   };
+  private apiUrl = `${process.env.API_URL}/works`;
 
   constructor(accessToken?: string) {
     if (accessToken) {
@@ -17,13 +17,16 @@ class Work {
     }
   };
   public getAll(): AxiosPromise<IWork[]> {
-    return axios.get(`${process.env.API_URL}/works`);
+    return axios.get(`${this.apiUrl}`);
   }
   public getById(id: string): AxiosPromise<IWork> {
-    return axios.get(`${process.env.API_URL}/works/${id}`);
+    return axios.get(`${this.apiUrl}/${id}`);
   }
   public createNew(data: IWorkPrepared): AxiosPromise<string> {
-    return axios.post(`${process.env.API_URL}/works/new`, data, this.config);
+    return axios.post(`${this.apiUrl}/new`, data, this.config);
+  }
+  public update(id: string, data: IWork): AxiosPromise<IWork> {
+    return axios.patch(`${this.apiUrl}/${id}`, data, this.config);
   }
 }
 

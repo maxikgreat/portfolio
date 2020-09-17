@@ -1,0 +1,26 @@
+import { NextApiRequest, NextApiResponse, PageConfig } from 'next';
+
+import auth0 from '@/utils/auth0';
+import Work from '@/models/Work';
+
+// bodyParser needs to be enabled on vercel
+export const config: PageConfig = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+interface NextApiRequestWithId extends NextApiRequest {
+  id: string,
+}
+
+export default async (req: NextApiRequestWithId, res: NextApiResponse) => {
+  try {
+    const { accessToken } = await auth0.getSession(req);
+    const { id, body } = req;
+    const { data } = await new Work(accessToken).update(id, body);
+    return res.json(data);
+  } catch (e) {
+    return res.status(e.status || 422).json(e.response.data);
+  }
+}

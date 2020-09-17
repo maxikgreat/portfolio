@@ -1,4 +1,4 @@
-import { useSpring, animated, config, useChain, useSprings, SpringValue } from 'react-spring';
+import { useSpring, animated, config as springConfig, useChain, useSprings, SpringValue } from 'react-spring';
 import { useRef } from 'react';
 
 import { delay } from '@/consts';
@@ -53,7 +53,7 @@ export default function Work({ works, error }: WorkProps) {
     transform: SpringValue<string>
   } = useSpring({
     ref: containerWorkRef,
-    config: config.slow,
+    config: springConfig.slow,
     transform: 'translateX(0)',
     opacity: 1,
     from: {
@@ -69,7 +69,7 @@ export default function Work({ works, error }: WorkProps) {
     works.length,
     works.map((_, index) => ({
       ref: elementWorkRef,
-      config: config.slow,
+      config: springConfig.slow,
       delay: delay * index,
       transform: 'translateY(0)',
       opacity: 1,

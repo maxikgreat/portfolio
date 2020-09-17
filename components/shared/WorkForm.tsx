@@ -24,7 +24,7 @@ interface ManualFormState {
 }
 
 interface WorkFormProps {
-  onSubmitAction: (data?) => Promise<void>,
+  onSubmitAction: (data?:any, id?: string) => Promise<void>,
   error: string,
   loading: boolean,
   initialData?: IWork
