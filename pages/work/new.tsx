@@ -17,7 +17,7 @@ function WorkNew({ user, loading }: WorkNewProps) {
   if (workState.data) return <Redirect to="/work" ssr={false} />
 
   return (
-    <BaseLayout data={user} loading={loading}>
+    <BaseLayout data={user} loading={loading} title="Work">
       <BasePage title="New work" className="work-form-container">
         <WorkForm
           onSubmitAction={createWork}

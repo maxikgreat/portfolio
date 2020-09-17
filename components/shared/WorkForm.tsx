@@ -157,7 +157,11 @@ export const WorkForm = ({ onSubmitAction, onSubmitText, error, loading, initial
         endDate: dateRange[1]?.toISOString(),
       };
       if (initialData) {
-        return onSubmitAction({ ...initialData, ...dataPrepared }, initialData._id);
+        return onSubmitAction({ 
+          ...initialData, 
+          ...dataPrepared,
+          endDate: dataPrepared.endDate ? dataPrepared.endDate : undefined,
+        }, initialData._id);
       }
       onSubmitAction(dataPrepared);
     }

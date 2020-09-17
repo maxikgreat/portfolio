@@ -53,7 +53,7 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
   if (workState.data) return <Redirect to="/work" ssr={false} />
 
   return (
-    <BaseLayout data={user} loading={loading}>
+    <BaseLayout data={user} loading={loading} title="Work">
       <BasePage title="Edit work" className="work-form-container">
         <WorkForm
           error={workState.error}
