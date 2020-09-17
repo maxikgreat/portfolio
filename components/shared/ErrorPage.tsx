@@ -11,7 +11,7 @@ export const ErrorPage = ({ message }: ErrorPage) => (
       size="huge"
       negative
     >
-      <Message.Header>{message}</Message.Header>
+      <Message.Header>{message || ''}</Message.Header>
     </Message>
   </BasePage>
 )

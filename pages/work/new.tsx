@@ -17,10 +17,11 @@ function WorkNew({ user, loading }: WorkNewProps) {
   if (workState.data) return <Redirect to="/work" ssr={false} />
 
   return (
-    <BaseLayout data={user} loading={false}>
-      <BasePage title="New work" className="new-work-container">
+    <BaseLayout data={user} loading={loading}>
+      <BasePage title="New work" className="work-form-container">
         <WorkForm
           onSubmitAction={createWork}
+          onSubmitText="Add"
           error={workState.error}
           loading={workState.loading}
         />

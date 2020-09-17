@@ -5,7 +5,7 @@ import { useState, useRef, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTransition, animated } from 'react-spring';
 
-import { IWorkPrepared } from '@/types/models';
+import { IWorkPrepared, IWork } from '@/types/models';
 
 const defaultPlaceholder = '...';
 
@@ -24,12 +24,14 @@ interface ManualFormState {
 }
 
 interface WorkFormProps {
-  onSubmitAction: (data?) => Promise<void>,
+  onSubmitAction: (data: any, id?: string) => Promise<void>,
+  onSubmitText: string,
   error: string,
-  loading: boolean
+  loading: boolean,
+  initialData?: IWork
 }
 
-export const WorkForm = ({ onSubmitAction, error, loading }: WorkFormProps) => {
+export const WorkForm = ({ onSubmitAction, onSubmitText, error, loading, initialData }: WorkFormProps) => {
   const dateRangePickerRef = useRef<SemanticDatepicker>();
 
   const { 
@@ -40,12 +42,28 @@ export const WorkForm = ({ onSubmitAction, error, loading }: WorkFormProps) => {
     setValue,
     watch,
     formState,
-  } = useForm<FormState>();
-
-  const [manualForm, setManualForm] = useState<ManualFormState>({
-    descriptionPoints: [],
-    dateRange: [],
+  } = useForm<FormState>({
+    defaultValues: initialData
+      ? {
+        company: initialData.company,
+        companyWebsite: initialData.companyWebsite,
+        jobPosition: initialData.jobPosition,
+        keyPoint: initialData.keyPoint,
+        location: initialData.location,
+      } : {},
   });
+
+  const [manualForm, setManualForm] = useState<ManualFormState>(
+    initialData ? {
+      descriptionPoints: initialData.descriptionPoints,
+      dateRange: initialData.endDate
+        ? [new Date(initialData.startDate), new Date(initialData.endDate)]
+        : [new Date(initialData.startDate)]
+    } : {
+      descriptionPoints: [],
+      dateRange: []
+    }
+  );
 
   const [endDate, setEndDate] = useState<boolean>(true);
 
@@ -103,6 +121,7 @@ export const WorkForm = ({ onSubmitAction, error, loading }: WorkFormProps) => {
       ...manualForm,
       dateRange: workRange,
     });
+    console.log(dateRangePickerRef.current.state);
     if (!endDate && workRange.length === 1) {
       dateRangePickerRef.current.close(_);
     }
@@ -137,6 +156,9 @@ export const WorkForm = ({ onSubmitAction, error, loading }: WorkFormProps) => {
         startDate: dateRange[0].toISOString(),
         endDate: dateRange[1]?.toISOString(),
       };
+      if (initialData) {
+        return onSubmitAction({ ...initialData, ...dataPrepared }, initialData._id);
+      }
       onSubmitAction(dataPrepared);
     }
   }
@@ -192,6 +214,12 @@ export const WorkForm = ({ onSubmitAction, error, loading }: WorkFormProps) => {
           <div className="rangepicker-container">
             <SemanticDatepicker
               datePickerOnly
+              value={initialData 
+                ? initialData.endDate 
+                  ? [new Date(initialData.startDate), new Date(initialData.endDate)]
+                  : [new Date(initialData.startDate)]
+                : null
+              }
               ref={dateRangePickerRef}
               showToday={false}
               icon={null}
@@ -247,11 +275,11 @@ export const WorkForm = ({ onSubmitAction, error, loading }: WorkFormProps) => {
               loading={loading}
               disabled={loading}
               className="rewrited"
-            >Add</Button>
+            >{onSubmitText}</Button>
             {error && 
-            <Message negative>
-              <Message.Header>{error}</Message.Header>
-            </Message>
+              <Message negative>
+                <Message.Header>{error}</Message.Header>
+              </Message>
             }
           </div>
         </Grid.Column>

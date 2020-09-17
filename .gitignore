@@ -37,4 +37,4 @@ yarn-error.log*
 .vercel
 
 # vercel bug. doesn't works without next body parser
-/pages/api/v1/work.ts
+# /pages/api/v1/work/new.ts

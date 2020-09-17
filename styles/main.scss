@@ -9,13 +9,13 @@
 @import './_components/input';
 @import './_components/message';
 @import './_components/error-page';
+@import './_components/work-form';
 @import './_components/loader';
 
 // pages
 @import './_pages/index.scss';
 @import './_pages/work';
 @import './_pages/cv';
-@import './_pages/new-work';
 
 *::-webkit-scrollbar {
   display: none;
