@@ -121,7 +121,6 @@ export const WorkForm = ({ onSubmitAction, onSubmitText, error, loading, initial
       ...manualForm,
       dateRange: workRange,
     });
-    console.log(dateRangePickerRef.current.state);
     if (!endDate && workRange.length === 1) {
       dateRangePickerRef.current.close(_);
     }
@@ -154,13 +153,12 @@ export const WorkForm = ({ onSubmitAction, onSubmitText, error, loading, initial
         descriptionPoints,
         keyPoint,
         startDate: dateRange[0].toISOString(),
-        endDate: dateRange[1]?.toISOString(),
+        endDate: dateRange[1]?.toISOString() || null,
       };
       if (initialData) {
         return onSubmitAction({ 
           ...initialData, 
           ...dataPrepared,
-          endDate: dataPrepared.endDate ? dataPrepared.endDate : undefined,
         }, initialData._id);
       }
       onSubmitAction(dataPrepared);
