@@ -13,9 +13,12 @@
 @import './_components/loader';
 
 // pages
-@import './_pages/index.scss';
+@import './_pages/index';
 @import './_pages/work';
 @import './_pages/cv';
+
+// mixins
+// @import './_mixins/respo-font';
 
 *::-webkit-scrollbar {
   display: none;
@@ -28,6 +31,7 @@ html, body {
   font-weight: normal;
   font-style: normal;
   overflow-x: hidden;
+  // @include respo-font(16, 25, 300, 1500); in next projects
 }
 
 .background-image {
