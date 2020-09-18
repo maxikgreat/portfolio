@@ -11,7 +11,6 @@ import { WorkForm } from '@/components/shared/WorkForm';
 import { Redirect } from '@/components/shared/Redirect';
 import { useUpdateWork } from '@/actions/work';
 import { toast } from 'react-toastify';
-import { defaultToastConfig } from '@/consts';
 
 interface WorkEditProps {
   user: User,
@@ -46,7 +45,18 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
 
   const updateWorkHandler = async (data: IWork, id: string) => {
     await updateWork(data, id);
-    toast('Updated successfully!', defaultToastConfig);
+    toast('Updated successfully!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      className: "toast-message image-bordered-shadow-small",
+      bodyClassName: "toast-message-body special-text-small",
+      progressClassName: 'toast-message-progress'
+    });
   }
 
   if (!work || error) {
