@@ -1,0 +1,14 @@
+@mixin respo-font($minFont, $maxFont, $minBreakpoint, $maxBreakpoint) {
+  $maxLessOne: $maxBreakpoint - 1;
+  $avg: ($maxFont + $minFont) / 2;
+  font-size: #{$minFont}px;
+  
+  @media (min-width: #{$minBreakpoint}px) and (max-width: #{$maxLessOne}px) {
+    font-size: #{$avg}px;
+    font-size: calc(#{$minFont}px + (#{$maxFont} - #{$minFont}) * (100vw - #{$minBreakpoint}px) / (#{$maxBreakpoint} - #{$minBreakpoint}))
+  }
+
+  @media (min-width: #{$maxBreakpoint}px) {
+    font-size: #{$maxFont}px;
+  }
+}
