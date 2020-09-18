@@ -10,6 +10,8 @@ import { ErrorPage } from '@/components/shared/ErrorPage';
 import { WorkForm } from '@/components/shared/WorkForm';
 import { Redirect } from '@/components/shared/Redirect';
 import { useUpdateWork } from '@/actions/work';
+import { toast } from 'react-toastify';
+import { defaultToastConfig } from '@/consts';
 
 interface WorkEditProps {
   user: User,
@@ -42,9 +44,14 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
 
   const [updateWork, workState] = useUpdateWork();
 
+  const updateWorkHandler = async (data: IWork, id: string) => {
+    await updateWork(data, id);
+    toast('Updated successfully!', defaultToastConfig);
+  }
+
   if (!work || error) {
     return (
-      <BaseLayout data={null} loading={false} title="Edit work" className="error">
+      <BaseLayout data={null} loading={false} title="Work" className="error">
         <ErrorPage message={error} />
       </BaseLayout>
     ) 
@@ -58,7 +65,7 @@ function WorkEdit({ user, loading, work, error }: WorkEditProps) {
         <WorkForm
           error={workState.error}
           loading={workState.loading}
-          onSubmitAction={updateWork}
+          onSubmitAction={updateWorkHandler}
           onSubmitText="Update"
           initialData={work}
         />

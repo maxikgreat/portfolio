@@ -1,0 +1,12 @@
+.toast-message {
+  background: rgba($black, 0.75);
+  &-body {
+    font-size: 1.25rem;
+  }
+  button svg {
+    color: $primary;
+  }
+  &-progress {
+    background: linear-gradient(to right, $accent, $primary);
+  }
+}
