@@ -1,5 +1,6 @@
 import Chance from 'chance';
 import { isMobile } from 'react-device-detect';
+import { ToastProps } from 'react-toastify';
 
 const chance = new Chance();
 

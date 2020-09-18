@@ -25,6 +25,7 @@
     "react-hook-form": "^6.7.2",
     "react-semantic-ui-datepickers": "^2.9.1",
     "react-spring": "^9.0.0-rc.3",
+    "react-toastify": "^6.0.8",
     "react-typed": "^1.2.0",
     "replace-in-file": "^6.1.0",
     "sass": "^1.26.10",

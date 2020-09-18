@@ -11,6 +11,7 @@
 @import './_components/error-page';
 @import './_components/work-form';
 @import './_components/loader';
+@import './_components/toast';
 
 // pages
 @import './_pages/index';
@@ -86,6 +87,10 @@ h1, h2, h3, h4, h5, h6, button {
 .image-bordered-shadow {
   border: 5px double $accent;
   box-shadow: 5px 5px 10px 15px rgba($black, 0.75);
+  &-small {
+    border: 2px double $accent;
+    box-shadow: 2px 2px 5px 10px rgba($black, 0.75);
+  }
 }
 
 .back-shadow {
