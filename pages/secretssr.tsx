@@ -16,7 +16,7 @@ export default function SecretSsr ({ user }: SecretSsrProps) {
   }
   return (
     <BaseLayout data={user} loading={false}>
-      <BasePage>
+      <BasePage title="Secret SSR">
         <h1 style={{ color: "white" }}>Secret page - user: {user && user.name}</h1>
       </BasePage>
     </BaseLayout>

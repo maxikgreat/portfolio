@@ -1,15 +1,17 @@
 import { animated, SpringValue } from 'react-spring';
+import { ReactNode } from 'react';
 
 import { IWork } from "@/types/models";
 
 interface WorkBlockProps {
+  children: ReactNode,
   props: {
     transform: SpringValue<string>,
   },
   work: IWork,
 }
 
-export const WorkBlock = ({ props, work }: WorkBlockProps) => {
+export const WorkBlock = ({ props, work, children }: WorkBlockProps) => {
 
   const normalizeWithZero = (value: number): string => value / 10 >= 1 ? `${value}` : `0${value}`;
 
@@ -52,7 +54,9 @@ export const WorkBlock = ({ props, work }: WorkBlockProps) => {
         </ul>
         <p className="timeline-content-key">
           <span className="special-text-small">Key achievement:&nbsp;</span>
-          {work.keyPoint}</p>
+          {work.keyPoint}
+        </p>
+        {children}
       </div> 
     </animated.div>
   )

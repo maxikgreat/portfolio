@@ -169,6 +169,17 @@
   main.error {
     background-size: 135%;
   }
+
+  .buttons-container {
+    .ui.basic.button.rewrited {
+      font-size: 1rem !important;
+    }
+  }
+
+  .top-container .buttons-container {
+    margin-left: 20px !important;
+  }
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

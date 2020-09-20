@@ -7,7 +7,7 @@ export default function About() {
 
   return (
     <BaseLayout data={data} loading={loading}>
-      <BasePage>
+      <BasePage title="About">
         <h1>About page</h1>
       </BasePage>
     </BaseLayout>

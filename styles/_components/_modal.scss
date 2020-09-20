@@ -1,0 +1,25 @@
+.ui.basic.modal {
+  .header {
+    border-color: $red;
+    i {
+      color: $red;
+      font-size: 3rem;
+      margin-right: 10px;
+    }
+    h2 {
+      display: inline-block;
+      font-size: 3rem;
+    }
+  }
+  .content  p{
+    font-size: 1.5rem;
+  }
+
+  .actions {
+    border-color: $accent;
+
+    button {
+      font-size: 1.25rem;
+    }
+  }
+}

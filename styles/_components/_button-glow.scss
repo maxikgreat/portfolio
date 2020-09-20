@@ -85,3 +85,17 @@
     border-color: $accent;
   }
 }
+
+.ui.basic.button.rewrited.red {
+  border: 3px solid $red;
+  color: $white !important;
+  text-shadow: 2px 2px $red !important;
+  &:hover {
+    border: 3px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(45deg, rgba($red, 1) 0%,rgba($white, 1) 100%);
+    background-color: $white !important;
+    color: $red !important;
+    text-shadow: none !important;
+  }
+}

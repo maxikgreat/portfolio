@@ -28,6 +28,9 @@ class Work {
   public update(id: string, data: IWork): AxiosPromise<IWork> {
     return axios.patch(`${this.apiUrl}/${id}`, data, this.config);
   }
+  public delete(id: string): AxiosPromise<IWork> {
+    return axios.delete(`${this.apiUrl}/${id}`, this.config);
+  }
 }
 
 export default Work;

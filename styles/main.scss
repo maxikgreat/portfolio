@@ -12,6 +12,7 @@
 @import './_components/work-form';
 @import './_components/loader';
 @import './_components/toast';
+@import './_components/modal';
 
 // pages
 @import './_pages/index';
@@ -61,6 +62,12 @@ h1, h2, h3, h4, h5, h6, button {
 
 .base-page {
   margin: 3rem 0 3rem 0;
+  .top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 }
 
 .special-text {
@@ -73,6 +80,10 @@ h1, h2, h3, h4, h5, h6, button {
   &-white {
     color: $white;
     text-shadow: 4px 4px $accent-dark;
+  }
+  &-small-error {
+    color: $white;
+    text-shadow: 2px 2px $red;
   }
 }
 
@@ -89,6 +100,10 @@ h1, h2, h3, h4, h5, h6, button {
   box-shadow: 5px 5px 10px 15px rgba($black, 0.75);
   &-small {
     border: 2px double $accent;
+    box-shadow: 2px 2px 5px 10px rgba($black, 0.75);
+  }
+  &-small-error {
+    border: 2px double $red;
     box-shadow: 2px 2px 5px 10px rgba($black, 0.75);
   }
 }
@@ -138,6 +153,19 @@ button:disabled {
 
 .disabled {
   cursor: not-allowed !important;
+}
+
+.buttons-container {
+  .ui.basic.button.rewrited {
+    font-size: 1.5rem;
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+
+.blurring.dimmable>.dimmer {
+  background: rgba($black, .25) !important;
 }
 
 @import './respo';

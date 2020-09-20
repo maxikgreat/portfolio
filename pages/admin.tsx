@@ -11,7 +11,7 @@ interface SecretProps {
 function Admin({ user, loading }: SecretProps) {
   return (
     <BaseLayout data={user} loading={loading}>
-      <BasePage>
+      <BasePage title="Admin">
         <h1 style={{ color: "white" }}>Admin page - {user.name}</h1>
       </BasePage>
     </BaseLayout>

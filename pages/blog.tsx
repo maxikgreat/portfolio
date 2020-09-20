@@ -6,7 +6,7 @@ export default function Blog() {
   const { data, loading } = useGetUser();
   return (
     <BaseLayout data={data} loading={loading}>
-      <BasePage>
+      <BasePage title="Blog">
         <h1>Hello blog</h1>
       </BasePage>
     </BaseLayout>

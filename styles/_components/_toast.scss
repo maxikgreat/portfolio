@@ -10,3 +10,12 @@
     background: linear-gradient(to right, $accent, $primary);
   }
 }
+
+.toast-message.error{
+  button svg {
+    color: $red;
+  }
+  .toast-message-progress {
+    background: linear-gradient(to right, $red, $white);
+  }
+}
